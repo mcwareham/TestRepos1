@@ -1,0 +1,42 @@
+[[AdvancedFormat]]
+
+
+
+[[Question:Matrix]]
+<strong>For each decision row choose your preferred option. The amounts are in dollars.</strong><br />
+&nbsp;
+<table border="1" cellpadding="1" cellspacing="1" style="width: 500px; ">
+	<tbody>
+		<tr>
+			<td style="width: 40px; text-align: center; "><strong>Decision</strong></td>
+			<td style="width: 230px; text-align: center; "><strong>Option A</strong><br />
+			(receive this amount today)</td>
+			<td style="width: 230px; text-align: center; "><strong>Option B</strong><br />
+			(receive this amount in 30 days)</td>
+		</tr>
+	</tbody>
+</table>
+
+
+
+[[Choices]]
+
+<table border="1" cellpadding="1" cellspacing="1" style="width: 500px; "> <tbody>  <tr>   <td style="width: 64px; text-align: center; ">1</td>   <td style="width: 228px; text-align: center; ">8</td>   <td style="width: 228px; text-align: center; ">7</td>  </tr> </tbody></table>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"> <tbody>  <tr>   <td style="width: 64px; text-align: center;">2</td>   <td style="width: 228px; text-align: center;">8</td>   <td style="width: 228px; text-align: center;">8</td>  </tr> </tbody></table>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"> <tbody>  <tr>   <td style="width: 64px; text-align: center;">3</td>   <td style="width: 228px; text-align: center;">8</td>   <td style="width: 228px; text-align: center;">9</td>  </tr> </tbody></table>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"> <tbody>  <tr>   <td style="width: 64px; text-align: center;">4</td>   <td style="width: 228px; text-align: center;">8</td>   <td style="width: 228px; text-align: center;">10</td>  </tr> </tbody></table>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"> <tbody>  <tr>   <td style="width: 64px; text-align: center;">5</td>   <td style="width: 228px; text-align: center;">8</td>   <td style="width: 228px; text-align: center;">11</td>  </tr> </tbody></table>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"> <tbody>  <tr>   <td style="width: 64px; text-align: center;">6</td>   <td style="width: 228px; text-align: center;">8</td>   <td style="width: 228px; text-align: center;">12</td>  </tr> </tbody></table>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"> <tbody>  <tr>   <td style="width: 64px; text-align: center;">7</td>   <td style="width: 228px; text-align: center;">8</td>   <td style="width: 228px; text-align: center;">13</td>  </tr> </tbody></table>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"> <tbody>  <tr>   <td style="width: 64px; text-align: center;">8</td>   <td style="width: 228px; text-align: center;">8</td>   <td style="width: 228px; text-align: center;">14</td>  </tr> </tbody></table>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"> <tbody>  <tr>   <td style="width: 64px; text-align: center;">9</td>   <td style="width: 228px; text-align: center;">8</td>   <td style="width: 228px; text-align: center;">15</td>  </tr> </tbody></table>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 500px;"> <tbody>  <tr>   <td style="width: 64px; text-align: center;">10</td>   <td style="width: 228px; text-align: center;">8</td>   <td style="width: 228px; text-align: center;">16</td>  </tr> </tbody></table>
+
+
+
+[[AdvancedAnswers]]
+
+[[Answer]]
+<strong>A</strong>
+[[Answer]]
+<strong>B</strong>
