@@ -183,8 +183,18 @@ h2{
 	color:#FFF;
 }
 .amountsA1{
-float: left; 
+float: left;
+padding-right:50px; 
 }
 .amountsB1{
+float: left;
+padding-right:50px; 
+}
+.default{
 float: left; 
+padding-right:110px;
+}
+#numSides{
+float: left;
+padding-right: 50px;
 }

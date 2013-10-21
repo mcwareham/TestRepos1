@@ -56,12 +56,18 @@
     </div>
     <div class="tabpage" id="tabpage_2">
     	<h2>Risk</h2>
-      <form action="checkRisk.php" method="GET">
+      <form action="checkRisk.php" method="GET" id="risk">
 	<div class ="default">
+		<h3>Survey Mode</h3>
 		<select name="Type">
 		<option value="default">Default</option>
 		<option value="nondefault">Nondefault</option>
 		</select>
+	</div>
+	<div class = "constant" id="constChoice">
+		<h3>What is constant?</h3>
+		<input type="radio" name="constant" value="dollar">Dollar Amount<br>
+		<input type="radio" name="constant" value="probability">Probability
 	</div>
     <div class="amountsA1">
 		<br>
@@ -70,16 +76,22 @@
 		initial amount: <input type="text" name="a1Initial">
 		<br>
 		<br>
-		final amount: <input type="text" name="a1Final">
+		final amount: <input type="text" name="a1Final" id = "a1Final">
+		<br>
+		<br>
+		die roll (constant) <input type="text" placeholder="1-6" name = 'a1Prob' id = "a1Prob">
     </div>
-	<div class="amountsA2">
+	<div class="amountsA2" id = "A2">
 		<br>
 		<h3>Option A2</h3>
 		<br>
 		initial amount: <input type="text" name="a2Initial">
 		<br>
 		<br>
-		final amount: <input type="text" name="a2Final">
+		final amount: <input type="text" name="a2Final" id ="a2Final">
+		<br>
+		<br>
+		die roll (constant) <input type="text" placeholder="1-6" name = 'a2Prob' id = "a2Prob">
     </div>
     <div class="amountsB1">
 		<br>
@@ -88,25 +100,34 @@
 		initial amount: <input type="text" name="b1Initial">
 		<br>
 		<br>
-		final amount: <input type="text" name="b1Final">
+		final amount: <input type="text" name="b1Final" id ="b1Final">
+		<br>
+		<br>
+		die roll (constant) <input type="text" placeholder="1-6" name = 'b1Prob' id = "b1Prob">
 		
     </div>
-<div class="amountsB2">
+<div class="amountsB2" id= "B2">
 		<br>
 		<h3>Option B2</h3>
 		<br>
 		initial amount: <input type="text" name="b2Initial">
 		<br>
 		<br>
-		final amount: <input type="text" name="b2Final">
+		final amount: <input type="text" name="b2Final" id="b2Final">
+		<br>
+		<br>
+		die roll (constant) <input type="text" placeholder="1-6" name = 'b2Prob' id = "b2Prob">
 		
     </div>
 <br>
-		<h3>Probability</h3>
+		<h3> Flexible Probability</h3>
 <br>
-    Dice sides: <input type="text" name="sides">
-		
+	<div id='numSides'>
+    Number of Dice sides: <input type="text" name="sides" id="sides">
+	</div>
+	<div id='submit'>
 	<input type="submit">
+	</div>
 </form>
     </div>
     <div class="tabpage" id="tabpage_3">
@@ -126,6 +147,46 @@
 <script>
 $(document).ready(function(){
    $("#tabContainer").acidTabs();
+	var $A1 = $('#a1Final'),
+	$A2 = $('#a2Final'),
+	$B1 = $('#b1Final'),
+    $B2 = $('#b2Final'),
+	$sides = $('#sides')
+	$a1Prob =$('#a1Prob'),
+	$a2Prob =$('#a2Prob'),
+	$b1Prob =$('#b1Prob'),
+	$b2Prob =$('#b2Prob');
+	$("input:radio[name=constant]").click(function (){
+    var constVal = $(this).val();  
+    	if (constVal=='dollar'){
+			$A1.attr('disabled', 'disabled').val('');
+			$A2.attr('disabled', 'disabled').val('');
+			$B1.attr('disabled', 'disabled').val('');
+			$B2.attr('disabled', 'disabled').val('');
+
+			$sides.removeAttr('disabled');
+			$a1Prob.attr('disabled', 'disabled').val('');
+			$a2Prob.attr('disabled', 'disabled').val('');
+			$b1Prob.attr('disabled', 'disabled').val('');
+			$b2Prob.attr('disabled', 'disabled').val('');
+
+			
+		}
+		else{
+			$A1.removeAttr('disabled');
+			 $A2.removeAttr('disabled');
+			$B1.removeAttr('disabled');
+			$B2.removeAttr('disabled');
+
+			$sides.attr('disabled', 'disabled').val('');
+			$a1Prob.removeAttr('disabled');
+			 $a2Prob.removeAttr('disabled');
+			$b1Prob.removeAttr('disabled');
+			$b2Prob.removeAttr('disabled');
+
+			
+		}
+  });
  });
 </script>
 
