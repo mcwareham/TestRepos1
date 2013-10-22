@@ -42,14 +42,14 @@ if($_SESSION['constant']=='dollar'){
 for($i=1; $i<=$_SESSION['numIter']; $i++){
 	if($i==1){
 
-	$string .= '<table border="1" cellpadding="1" cellspacing="1" style="width: 500px; "> <tbody>  <tr>   <td style="width: 64px; text-align: center; ">'.$i.'</td>   <td style="width: 228px; text-align: center; ">$'.$_SESSION['a1'].' if die roll is one <br> $'.$_SESSION['a2'].'if die roll is 2-'.$_SESSION['sides'].'</td>   <td style="width: 228px; text-align: center; ">$'.$_SESSION['b1'].' if die roll is one <br>$'.$_SESSION['b2'].' if die roll is 2-'.$_SESSION['sides'].'</td>  </tr> </tbody></table>
+	$string .= '<table border="1" cellpadding="1" cellspacing="1" style="width: 500px; "> <tbody>  <tr>   <td style="width: 64px; text-align: center; ">'.$i.'</td>   <td style="width: 228px; text-align: center; ">$'.$_SESSION['a1'].' if die roll is one <br> $'.$_SESSION['a2'].' if die roll is 2-'.$_SESSION['sides'].'</td>   <td style="width: 228px; text-align: center; ">$'.$_SESSION['b1'].' if die roll is one <br>$'.$_SESSION['b2'].' if die roll is 2-'.$_SESSION['sides'].'</td>  </tr> </tbody></table>
 ';
 
 	}
 	elseif(($i+1)==$_SESSION['sides']){
 	$string .= '<table border="1" cellpadding="1" cellspacing="1" style="width: 500px; "> <tbody>  <tr>   <td style="width: 64px; text-align: center; ">'.$i.'</td>   <td style="width: 228px; text-align: center; ">$'.$_SESSION['a1'].' if die roll is one-'.$i.' <br>$'.$_SESSION['a2'].' if die roll is '.($i+1).'</td><td style="width: 228px; text-align: center; ">$'.$_SESSION['b1'].' if die roll is one-'.$i.' <br>$'.$_SESSION['b2'].' if die roll is '.($i+1).'</td>  </tr> </tbody></table>
 ';
-	
+
 	}
 	elseif(($i)>=$_SESSION['sides']){
 	$string .= '<table border="1" cellpadding="1" cellspacing="1" style="width: 500px; "> <tbody>  <tr>   <td style="width: 64px; text-align: center; ">'.$i.'</td>   <td style="width: 228px; text-align: center; ">$'.$_SESSION['a1'].' if die roll is one-'.$_SESSION['sides'].' </td><td style="width: 228px; text-align: center; ">$'.$_SESSION['b1'].' if die roll is one-'.$_SESSION['sides'].'</td>  </tr> </tbody></table>
@@ -65,7 +65,7 @@ for($i=1; $i<=$_SESSION['numIter']; $i++){
 
 
 
-    
+
 
 }
 
