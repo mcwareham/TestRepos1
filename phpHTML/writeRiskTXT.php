@@ -88,11 +88,14 @@ fclose($file);
 //fclose($cssFile);
 
 
-//echo 'Your survey "'.$fileName.'" has been created';
+echo 'Your survey "'.$fileName.'" has been created';
 
 header("Content-disposition: attachment; filename=".$fileName.".txt");
 header("Content-type: text/plain");
+ob_clean();
 readfile($fileName.".txt");
+exit;
+
 ?>
 
 </body>
