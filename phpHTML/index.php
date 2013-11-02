@@ -66,7 +66,7 @@
 	</div>
 	<div class = "constant" id="constChoice">
 		<h3>What is constant?</h3>
-		<input type="radio" name="constant" value="dollar">Dollar Amount<br>
+		<input type="radio" name="constant" value="dollar" checked>Dollar Amount<br>
 		<input type="radio" name="constant" value="probability">Probability
 	</div>
     <div class="amountsA1">
@@ -156,6 +156,26 @@ $(document).ready(function(){
 	$a2Prob =$('#a2Prob'),
 	$b1Prob =$('#b1Prob'),
 	$b2Prob =$('#b2Prob');
+	/*$a1Prob.attr('disabled', 'disabled').val('');
+	$a2Prob.attr('disabled', 'disabled').val('');
+	$b1Prob.attr('disabled', 'disabled').val('');
+	$b2Prob.attr('disabled', 'disabled').val('');*/
+        
+        if($("input:radio[name=constant]").val()=='dollar'){
+                        $A1.attr('disabled', 'disabled').val('');
+			$A2.attr('disabled', 'disabled').val('');
+			$B1.attr('disabled', 'disabled').val('');
+			$B2.attr('disabled', 'disabled').val('');
+                        
+                        $a1Prob.attr('disabled', 'disabled').val('');
+			$a2Prob.attr('disabled', 'disabled').val('');
+			$b1Prob.attr('disabled', 'disabled').val('');
+			$b2Prob.attr('disabled', 'disabled').val('');
+        }
+        else{
+                        $sides.attr('disabled', 'disabled').val('');
+        }
+        
 	$("input:radio[name=constant]").click(function (){
     var constVal = $(this).val();  
     	if (constVal=='dollar'){
