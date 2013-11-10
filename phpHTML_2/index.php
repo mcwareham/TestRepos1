@@ -146,6 +146,7 @@ function printRiskTab() {
         </div>
     </form>
     </div>           
+    
     '; 
     
 }
