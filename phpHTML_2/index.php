@@ -99,18 +99,6 @@ function printRiskTab() {
             <br>
             die roll (constant) <input type="text" placeholder="1-6" name = "a1Prob" id = "a1Prob">
         </div>
-        <div class="amountsA2" id = "A2">
-            <br>
-            <h3>Option A2</h3>
-            <br>
-            initial amount: <input type="text" name="a2Initial">
-            <br>
-            <br>
-            final amount: <input type="text" name="a2Final" id ="a2Final">
-            <br>
-            <br>
-            die roll (constant) <input type="text" placeholder="1-6" name = "a2Prob" id = "a2Prob">
-        </div>
         <div class="amountsB1">
             <br>
             <h3>Option B1</h3>
@@ -122,6 +110,18 @@ function printRiskTab() {
             <br>
             <br>
             die roll (constant) <input type="text" placeholder="1-6" name = "b1Prob" id = "b1Prob">		
+        </div>
+		<div class="amountsA2" id = "A2">
+            <br>
+            <h3>Option A2</h3>
+            <br>
+            initial amount: <input type="text" name="a2Initial">
+            <br>
+            <br>
+            final amount: <input type="text" name="a2Final" id ="a2Final">
+            <br>
+            <br>
+            die roll (constant) <input type="text" placeholder="1-6" name = "a2Prob" id = "a2Prob">
         </div>
         <div class="amountsB2" id= "B2">
             <br>
@@ -145,7 +145,127 @@ function printRiskTab() {
             <input type="submit">
         </div>
     </form>
-    </div>           
+	<div id="exampleRisk">
+		<table border="1">
+		<tr>
+			<td></td>
+			<td>Option A </td>
+			<td>Option B </td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td> $2.00 if die roll is one <br>(A1 INITIAL)<br>$1.60 if die roll is 2-10<br> (A2 INITIAL)</td>
+			<td> $3.85 if die roll is one <br>(B1 INITIAL)<br>$0.10 if die roll is 2-10<br>(B2 INITIAL)</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td> $2.00 if die roll is one-2 <br>$1.60 if die roll is 3-10</td>
+			<td> $3.85 if die roll is one-2 <br>$0.10 if die roll is 3-10</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td> $2.00 if die roll is one-3 <br>$1.60 if die roll is 4-10</td>
+			<td> $3.85 if die roll is one-3 <br>$0.10 if die roll is 4-10</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td> $2.00 if die roll is one-4 <br>$1.60 if die roll is 5-10</td>
+			<td> $3.85 if die roll is one-4 <br>$0.10 if die roll is 5-10</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td> $2.00 if die roll is one-5 <br>$1.60 if die roll is 6-10</td>
+			<td> $3.85 if die roll is one-5 <br>$0.10 if die roll is 6-10</td>
+		</tr>
+		<tr>
+			<td>6</td>
+			<td> $2.00 if die roll is one-6 <br>$1.60 if die roll is 7-10</td>
+			<td> $3.85 if die roll is one-6 <br>$0.10 if die roll is 7-10</td>
+		</tr>
+		<tr>
+			<td>7</td>
+			<td> $2.00 if die roll is one-7 <br>$1.60 if die roll is 8-10</td>
+			<td> $3.85 if die roll is one-7 <br>$0.10 if die roll is 8-10</td>
+		</tr>
+		<tr>
+			<td>8</td>
+			<td> $2.00 if die roll is one-8 <br>$1.60 if die roll is 9-10</td>
+			<td> $3.85 if die roll is one-8 <br>$0.10 if die roll is 9-10</td>
+		</tr>
+		<tr>
+			<td>9</td>
+			<td> $2.00 if die roll is one-9 <br>$1.60 if die roll is 10</td>
+			<td> $3.85 if die roll is one-9 <br>$0.10 if die roll is 10</td>
+		</tr>
+		<tr>
+			<td>10</td>
+			<td> $2.00 if die roll is one-10 </td>
+			<td> $3.85 if die roll is one-10 </td>
+		</tr>
+	</table>
+	</div>
+<div id="exampleRisk2">
+		<table border="1">
+		<tr>
+			<td></td>
+			<td>Option A </td>
+			<td>Option B </td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td> $1.00 if die roll is one <br>(A1 INITIAL/ die roll)<br>$0.50 if die roll is 2-10<br> (A2 INITIAL/ die roll)</td>
+			<td> $2.50 if die roll is one-2 <br>(B1 INITIAL/ die roll)<br>$2.00 if die roll is 3-10<br>(B2 INITIAL/ die roll)</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td> $2.00 if die roll is one <br>$0.50 if die roll is 2-10</td>
+			<td> $3.00 if die roll is one-2 <br>$2.00 if die roll is 3-10</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td> $3.00 if die roll is one <br>$0.50 if die roll is 2-10</td>
+			<td> $3.50 if die roll is one-2 <br>$2.00 if die roll is 3-10</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td> $4.00 if die roll is one  <br>$0.50 if die roll is 2-10</td>
+			<td> $4.00 if die roll is one-2 <br>$2.00 if die roll is 3-10</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td> $5.00 if die roll is one  <br>$0.50 if die roll is 2-10</td>
+			<td> $4.50 if die roll is one-2 <br>$2.00 if die roll is 3-10</td>
+		</tr>
+		<tr>
+			<td>6</td>
+			<td> $6.00 if die roll is one  <br>$0.50 if die roll is 2-10</td>
+			<td> $5.00 if die roll is one-2 <br>$2.00 if die roll is 3-10</td>
+		</tr>
+		<tr>
+			<td>7</td>
+			<td> $7.00 if die roll is one  <br>$0.50 if die roll is 2-10</td>
+			<td> $5.50 if die roll is one-2 <br>$2.00 if die roll is 3-10</td>
+		</tr>
+		<tr>
+			<td>8</td>
+			<td> $8.00 if die roll is one  <br>$0.50 if die roll is 2-10</td>
+			<td> $6.00 if die roll is one-2 <br>$2.00 if die roll is 3-10</td>
+		</tr>
+		<tr>
+			<td>9</td>
+			<td> $9.00 if die roll is one  <br>$0.50 if die roll is 2-10</td>
+			<td> $6.50 if die roll is one-2 <br>$2.00 if die roll is 3-10</td>
+		</tr>
+		<tr>
+			<td>10</td>
+			<td> $10.00 if die roll is one <br>(A1 Final)<br>$0.50 if die roll is 2-10 <br>(A2 FINAL)</td>
+			<td> $7.00 if die roll is one-2 <br>(B1 FINAL) <br> $2.00 if die roll is 3-10 <br>(B2 FINAL)</td>
+		</tr>
+	</table>
+	</div>
+<br>
+<br>  
+    </div>          
     
     '; 
     
@@ -154,13 +274,174 @@ function printRiskTab() {
 function printTimeAndRiskTab() {
     echo '
     <div class="tabpage" id="tabpage_3">
-    	<h2>Page 3</h2>
-      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. </p><p>Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. 
-      Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum 
-      sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.</p><p>Donec non enim in turpis 
-      pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis 
-      luctus, metus.
-      </p>
+    	<h2>Risk and Time</h2>
+      	<form action="checkRiskAndTime.php" method="GET" id="riskAndTime">
+        <div class ="default">
+            <h3>Survey Mode</h3>
+            <select name="Type">
+            <option value="default">Default</option>
+            <option value="custom">Custom</option>
+            </select>
+        </div>
+		<div class = "constant" id="constChoice">
+            <br>
+			<br>
+			<br>
+			<br>
+        </div>
+     	<div class="amountsA1">
+            <h3>Option A1</h3>
+            <br>
+            current amount: <input type="text" name="a1Initial">
+            <br>
+            <br>
+            delayed amount: <input type="text" name="a1Final">
+
+        </div>
+        <div class="amountsB1">
+            <h3>Option B1</h3>
+            <br>
+            current amount: <input type="text" name="b1Initial">
+            <br>
+            <br>
+            delayed amount: <input type="text" name="b1Final">	
+        </div>
+		<div class="amountsA2" id = "A2">
+            <br>
+            <h3>Option A2</h3>
+            <br>
+            current amount: <input type="text" name="a2Initial">
+            <br>
+            <br>
+            delayed amount: <input type="text" name="a2Final">
+        </div>
+        <div class="amountsB2" id= "B2">
+            <br>
+            <h3>Option B2</h3>
+            <br>
+            current amount: <input type="text" name="b2Initial">
+            <br>
+            <br>
+            delayed amount: <input type="text" name="b2Final">
+        </div>
+        <br>
+        <h3> Probability and Delay </h3>
+        <br>
+        <div id="numSides">
+            Number of Dice sides: <input type="text" name="sides">
+			<br>
+			<br>
+			time delay: <input type="text" name="delay">
+        <select name="units">
+                    <option value="days">days</option>
+                    <option value="weeks">weeks</option>
+                    <option value="months">months</option>
+                    <option value="years">years</years>
+                </select>
+                <br>
+                <br>
+                <div id="submit">
+                <input type="submit">
+                </div>
+        </div>
+    </form>
+    
+        <div id=exampleRiskAndTime>
+	<table border="1">
+            <tr>
+                <td>Option A </td>
+                <td>Option B </td>
+            </tr>
+            <tr>
+                <td> If die roll is 1 receive:<br/> $3.85 today and $0.10 in 30 days
+                <br> (A1 CURRENT/ A1 DELAYED)
+                <br>If die roll is 2-10 receive:<br/> $0.10 today and $3.85 in 30 days
+                 <br> (A2 CURRENT/ A2 DELAYED)
+                </td>
+                <td> If die roll is 1 receive:<br/> $3.85 today and $3.85 in 30 days
+                <br> (B1 CURRENT)/ B1 DELAYED)
+                <br>If die roll is 2-10 receive:<br/> $0.10 today and $0.10 in 30 days
+                <br> (B2 CURRENT/ B2 DELAYED)
+                 </td>
+            </tr>
+            <tr>
+                <td> If die roll is 1-2 receive:<br/> $3.85 today and $0.10 in 30 days
+                 <br> (A1 CURRENT/ A1 DELAYED)
+                <br>If die roll is 3-10 receive:<br/> $0.10 today and $3.85 in 30 days
+                 <br> (A2 CURRENT/ A2 DELAYED)
+                </td>
+                <td> If die roll is 1-2 receive:<br/> $3.85 today and $3.85 in 30 days
+                <br> (B1 CURRENT)/ B1 DELAYED)
+                <br>If die roll is 3-10 receive:<br/> $0.10 today and $0.10 in 30 days
+                <br> (B2 CURRENT/ B2 DELAYED)
+                </td>
+            </tr>
+            
+            <tr>
+                <td> If die roll is 1-3 receive:<br/> $3.85 today and $0.10 in 30 days
+                <br>If die roll is 4-10 receive:<br/> $0.10 today and $3.85 in 30 days
+                </td>
+                <td> If die roll is 1-3 receive:<br/> $3.85 today and $3.85 in 30 days
+                <br>If die roll is 4-10 receive:<br/> $0.10 today and $0.10 in 30 days
+                </td>
+            </tr>
+            <tr>
+                <td> If die roll is 1-4 receive:<br/> $3.85 today and $0.10 in 30 days
+                <br>If die roll is 5-10 receive:<br/> $0.10 today and $3.85 in 30 days
+                </td>
+                <td> If die roll is 1-4 receive:<br/> $3.85 today and $3.85 in 30 days
+                <br>If die roll is 5-10 receive:<br/> $0.10 today and $0.10 in 30 days
+                </td>
+            </tr>
+            <tr>
+                 <td> If die roll is 1-5 receive:<br/> $3.85 today and $0.10 in 30 days
+                 <br>If die roll is 6-10 receive:<br/> $0.10 today and $3.85 in 30 days
+                 </td>
+                 <td> If die roll is 1-5 receive:<br/> $3.85 today and $3.85 in 30 days
+                 <br>If die roll is 6-10 receive:<br/> $0.10 today and $0.10 in 30 days
+                 </td>
+             </tr>
+             <tr>
+                <td> If die roll is 1-6 receive:<br/> $3.85 today and $0.10 in 30 days
+                <br>If die roll is 7-10 receive:<br/> $0.10 today and $3.85 in 30 days
+                </td>
+                <td> If die roll is 1-6 receive:<br/> $3.85 today and $3.85 in 30 days
+                <br>If die roll is 7-10 receive:<br/> $0.10 today and $0.10 in 30 days
+                </td>
+             </tr>
+             <tr>
+             <td> If die roll is 1-7 receive:<br/> $3.85 today and $0.10 in 30 days
+             <br>If die roll is 8-10 receive:<br/> $0.10 today and $3.85 in 30 days
+             </td>
+             <td> If die roll is 1-7 receive:<br/> $3.85 today and $3.85 in 30 days
+             <br>If die roll is 8-10 receive:<br/> $0.10 today and $0.10 in 30 days
+             </td>
+         </tr>
+         <tr>
+            <td> If die roll is 1-8 receive:<br/> $3.85 today and $0.10 in 30 days
+            <br>If die roll is 9-10 receive:<br/> $0.10 today and $3.85 in 30 days
+            </td>
+            <td> If die roll is 1-8 receive:<br/> $3.85 today and $3.85 in 30 days
+            <br>If die roll is 9-10 receive:<br/> $0.10 today and $0.10 in 30 days
+            </td>
+         </tr>
+         <tr>
+            <td> If die roll is 1-9 receive:<br/> $3.85 today and $0.10 in 30 days<br>
+            If die roll is 10 receive:<br/> $0.10 today and $3.85 in 30 days
+            </td>
+            <td> If die roll is 1-9 receive:<br/> $3.85 today and $3.85 in 30 days
+            <br>If die roll is 10 receive:<br/> $0.10 today and $0.10 in 30 days
+            </td>
+        <tr>
+            <td> If die roll is 1-10 receive:<br/> $3.85 today and $0.10 in 30 days
+            <br>(A1 CURRENT/ A1 DELAYED)
+            </td>
+            <td> If die roll is 1-10 receive:<br/> $3.85 today and $3.85 in 30 days
+            <br>(B1 CURRENT/ B1 DELAYED)
+            </td>
+        </tr>
+        </table> 
+        </div>
     </div>
       
     ';
@@ -169,13 +450,80 @@ function printTimeAndRiskTab() {
 function printAmbiguityTab() {
     echo '
     <div class="tabpage" id="tabpage_4">
-    	<h2>Page 4</h2>
-      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. </p><p>Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. 
-      Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum 
-      sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.</p><p>Donec non enim in turpis 
-      pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis 
-      luctus, metus.
-      </p>
+    	<h2>Ambiguity Aversion</h2>
+        <form action="checkAmbiguity.php" method="GET" id="riskAndTime">
+        <div class ="default">
+            <h3>Survey Mode</h3>
+            <select name="Type">
+            <option value="default">Default</option>
+            <option value="custom">Custom</option>
+            </select>
+        </div>
+	<div class = "constant" id="constChoice">
+            <br>
+			<br>
+			<br>
+			<br>
+        </div>
+     	<div class="amountsA1">
+            <h3>Option A (correctly guessed)</h3>
+            <br>
+            Starting amount: <input type="text" name="a1Initial">
+            <br>
+            <br>
+            Ending amount: <input type="text" name="a1Final">
+
+        </div>
+        <div class="amountsB1">
+            <h3>Option B (correctly guessed)</h3>
+            <br>
+            Starting amount: <input type="text" name="b1Initial">
+            <br>
+            <br>
+            Ending amount: <input type="text" name="b1Final">	
+        </div>
+	<div class="amountsA2" id = "A2">
+            <br>
+            <h3>Option A (incorrectly guessed)</h3>
+            <br>
+            Starting amount: <input type="text" name="a2Initial">
+            <br>
+            <br>
+            Ending amount: <input type="text" name="a2Final">
+        </div>
+        <div class="amountsB2" id= "B2">
+            <br>
+            <h3>Option B (incorrectly guessed)</h3>
+            <br>
+            current amount: <input type="text" name="b2Initial">
+            <br>
+            <br>
+            delayed amount: <input type="text" name="b2Final">
+        </div>
+        <br>
+        <h3> Probability and Delay </h3>
+        <br>
+        <div id="numSides">
+            Number of Dice sides: <input type="text" name="sides">
+			<br>
+			<br>
+			time delay: <input type="text" name="delay">
+        <select name="units">
+                    <option value="days">days</option>
+                    <option value="weeks">weeks</option>
+                    <option value="months">months</option>
+                    <option value="years">years</years>
+                </select>
+                <br>
+                <br>
+                <div id="submit">
+                <input type="submit">
+                </div>
+        </div>
+        
+  
+    </form>
+      
     </div>
       
     ';
@@ -226,14 +574,18 @@ $(document).ready(function(){
 	$a1Prob =$('#a1Prob'),
 	$a2Prob =$('#a2Prob'),
 	$b1Prob =$('#b1Prob'),
-	$b2Prob =$('#b2Prob');
+	$b2Prob =$('#b2Prob'),
+	$constDollarDisplay =$('#exampleRisk');
+	$constProbabiltyDisplay=$('#exampleRisk2');
 	/*$a1Prob.attr('disabled', 'disabled').val('');
 	$a2Prob.attr('disabled', 'disabled').val('');
 	$b1Prob.attr('disabled', 'disabled').val('');
 	$b2Prob.attr('disabled', 'disabled').val('');*/
         
         if($('input:radio[name=constant]').val()=='dollar'){
-                        $A1.attr('disabled', 'disabled').val('');
+			$constDollarDisplay.show();
+			$constProbabiltyDisplay.hide();
+            $A1.attr('disabled', 'disabled').val('');
 			$A2.attr('disabled', 'disabled').val('');
 			$B1.attr('disabled', 'disabled').val('');
 			$B2.attr('disabled', 'disabled').val('');
@@ -244,12 +596,16 @@ $(document).ready(function(){
 			$b2Prob.attr('disabled', 'disabled').val('');
         }
         else{
+						$constDollarDisplay.hide();
+						$constProbabiltyDisplay.show();
                         $sides.attr('disabled', 'disabled').val('');
         }
         
 	$('input:radio[name=constant]').click(function (){
     var constVal = $(this).val();  
     	if (constVal=='dollar'){
+			$constDollarDisplay.show();
+			$constProbabiltyDisplay.hide();
 			$A1.attr('disabled', 'disabled').val('');
 			$A2.attr('disabled', 'disabled').val('');
 			$B1.attr('disabled', 'disabled').val('');
@@ -264,6 +620,9 @@ $(document).ready(function(){
 			
 		}
 		else{
+			$constDollarDisplay.hide();
+			$constProbabiltyDisplay.show();
+
 			$A1.removeAttr('disabled');
 			 $A2.removeAttr('disabled');
 			$B1.removeAttr('disabled');
