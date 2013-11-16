@@ -1,15 +1,49 @@
 <?php
 
+
+
 //
 //DEFINE FUNCTIONS FIRST
 //
+function printSurveyMode(){
+    echo'
+        <div class ="surveyMode">
+            <h3>Survey Mode</h3>
+            <br>
+            <div class="defaultDiv">
+                <select name="Type" class="Type">
+                    <option value="default"selected="selected">Default</option>s
+                    <option value="custom">Custom</option>
+                </select>
+            </div>
+            <div class="iterativeDiv">
+                Interative <input type="checkbox" name="iterative" class="iterativeCheckbox"/>
+                <br>
+            </div>
+            <div class="customQuestionDiv">
+            Number of Iterative Questions <input type="text" name="numIterativeQuestions" class ="numIterativeQuestions" maxlength="3" value="10"/>
+            <br>
+            <br>
+            Number of Main Questions <input type="text" name="numMainQuestions" class = "numMainQuestions" maxlength="3" value="10"/>
+            </div>
+        </div>
+';
+}
+function printClearFloat(){
+    echo '
+    <div style="clear: both;"></div>
+    ';
+}
 
-function printHeadHTML() {
+function printHeadHTML() {//contains files added: css, js, etc
     echo '
     <!DOCTYPE html>
     <html>
     <head>
     <meta charset="utf-8">
+    <script src="http://code.jquery.com/jquery-1.6.min.js"></script>
+    <script src="acidTabs.js"></script> 
+    <script src="buildTabs.js"></script>
 
     <title>Individual Choice Experiments</title>
     <link href="styles.css" rel="stylesheet" type="text/css">
@@ -35,10 +69,10 @@ function printTimeTab() {
   	<div class="tabpage" id="tabpage_1">
     	<h2>Time</h2>
     <form action="checkTime.php" method="GET">
-        <select name="Type">
-        <option value="default">Default</option>
-        <option value="custom">Custom</option>
-        </select>
+        ';
+   printSurveyMode();
+   printClearFloat();
+    echo'
             <div class="amountsA">
                 <br>
                 <h3>Option A</h3>
@@ -75,18 +109,15 @@ function printRiskTab() {
     <div class="tabpage" id="tabpage_2">
     	<h2>Risk</h2>
     <form action="checkRisk.php" method="GET" id="risk">
-        <div class ="default">
-            <h3>Survey Mode</h3>
-            <select name="Type">
-            <option value="default">Default</option>
-            <option value="custom">Custom</option>
-            </select>
-        </div>
-        <div class = "constant" id="constChoice">
-            <h3>What is constant?</h3>
-            <input type="radio" name="constant" value="dollar" checked>Dollar Amount<br>
-            <input type="radio" name="constant" value="probability">Probability
-        </div>
+         <div class = "constant" id="constChoice">
+            <h4>What is constant?
+            <input type="radio" name="constant" value="dollar" id="dollar" checked>Dollar Amount 
+            <input type="radio" name="constant" value="probability" id ="probability">Probability
+            </h4>
+        </div>';
+    printSurveyMode();
+    printClearFloat();
+    echo '
         <div class="amountsA1">
             <br>
             <h3>Option A1</h3>
@@ -144,6 +175,7 @@ function printRiskTab() {
         <div id="submit">
             <input type="submit">
         </div>
+       
     </form>
 	<div id="exampleRisk">
 		<table border="1">
@@ -276,19 +308,10 @@ function printTimeAndRiskTab() {
     <div class="tabpage" id="tabpage_3">
     	<h2>Risk and Time</h2>
       	<form action="checkRiskAndTime.php" method="GET" id="riskAndTime">
-        <div class ="default">
-            <h3>Survey Mode</h3>
-            <select name="Type">
-            <option value="default">Default</option>
-            <option value="custom">Custom</option>
-            </select>
-        </div>
-		<div class = "constant" id="constChoice">
-            <br>
-			<br>
-			<br>
-			<br>
-        </div>
+        ';
+    printSurveyMode();
+    printClearFloat();
+    echo'
      	<div class="amountsA1">
             <h3>Option A1</h3>
             <br>
@@ -452,19 +475,11 @@ function printAmbiguityTab() {
     <div class="tabpage" id="tabpage_4">
     	<h2>Ambiguity Aversion</h2>
         <form action="checkAmbiguity.php" method="GET" id="riskAndTime">
-        <div class ="default">
-            <h3>Survey Mode</h3>
-            <select name="Type">
-            <option value="default">Default</option>
-            <option value="custom">Custom</option>
-            </select>
-        </div>
-	<div class = "constant" id="constChoice">
-            <br>
-			<br>
-			<br>
-			<br>
-        </div>
+       ';
+        printSurveyMode();
+        printClearFloat();
+        
+    echo'
      	<div class="amountsA1">
             <h3>Option A (correctly guessed)</h3>
             <br>
@@ -538,106 +553,19 @@ function printTailHTML() {
     ';
 }
 
-function getJavaScriptLogic() {
-    //in a later edit, the JavaScript at the bottom will be moved into a separate file and imported/"called" from this method
-   
-}
+
 
 
 //
 //EXECUTE RELEVANT LOGIC FOR THIS PAGE
 //
 
-printHeadHTML();
+printHeadHTML();//contains javascript files
 printTimeTab();
 printRiskTab();
 printTimeAndRiskTab();
 printAmbiguityTab();
 printTailHTML();
-//getJavaScriptLogic(); //to be uncommented later
+
 
 ?>
-
-
-
-<html>    
-<script src='http://code.jquery.com/jquery-1.6.min.js'></script>
-<script src='acidTabs.js'></script> 
-<script>
-$(document).ready(function(){
-   $('#tabContainer').acidTabs();
-	var $A1 = $('#a1Final'),
-	$A2 = $('#a2Final'),
-	$B1 = $('#b1Final'),
-    $B2 = $('#b2Final'),
-	$sides = $('#sides')
-	$a1Prob =$('#a1Prob'),
-	$a2Prob =$('#a2Prob'),
-	$b1Prob =$('#b1Prob'),
-	$b2Prob =$('#b2Prob'),
-	$constDollarDisplay =$('#exampleRisk');
-	$constProbabiltyDisplay=$('#exampleRisk2');
-	/*$a1Prob.attr('disabled', 'disabled').val('');
-	$a2Prob.attr('disabled', 'disabled').val('');
-	$b1Prob.attr('disabled', 'disabled').val('');
-	$b2Prob.attr('disabled', 'disabled').val('');*/
-        
-        if($('input:radio[name=constant]').val()=='dollar'){
-			$constDollarDisplay.show();
-			$constProbabiltyDisplay.hide();
-            $A1.attr('disabled', 'disabled').val('');
-			$A2.attr('disabled', 'disabled').val('');
-			$B1.attr('disabled', 'disabled').val('');
-			$B2.attr('disabled', 'disabled').val('');
-                        
-                        $a1Prob.attr('disabled', 'disabled').val('');
-			$a2Prob.attr('disabled', 'disabled').val('');
-			$b1Prob.attr('disabled', 'disabled').val('');
-			$b2Prob.attr('disabled', 'disabled').val('');
-        }
-        else{
-						$constDollarDisplay.hide();
-						$constProbabiltyDisplay.show();
-                        $sides.attr('disabled', 'disabled').val('');
-        }
-        
-	$('input:radio[name=constant]').click(function (){
-    var constVal = $(this).val();  
-    	if (constVal=='dollar'){
-			$constDollarDisplay.show();
-			$constProbabiltyDisplay.hide();
-			$A1.attr('disabled', 'disabled').val('');
-			$A2.attr('disabled', 'disabled').val('');
-			$B1.attr('disabled', 'disabled').val('');
-			$B2.attr('disabled', 'disabled').val('');
-
-			$sides.removeAttr('disabled');
-			$a1Prob.attr('disabled', 'disabled').val('');
-			$a2Prob.attr('disabled', 'disabled').val('');
-			$b1Prob.attr('disabled', 'disabled').val('');
-			$b2Prob.attr('disabled', 'disabled').val('');
-
-			
-		}
-		else{
-			$constDollarDisplay.hide();
-			$constProbabiltyDisplay.show();
-
-			$A1.removeAttr('disabled');
-			 $A2.removeAttr('disabled');
-			$B1.removeAttr('disabled');
-			$B2.removeAttr('disabled');
-
-			$sides.attr('disabled', 'disabled').val('');
-			$a1Prob.removeAttr('disabled');
-			 $a2Prob.removeAttr('disabled');
-			$b1Prob.removeAttr('disabled');
-			$b2Prob.removeAttr('disabled');
-
-			
-		}
-  });
- });
-</script>
-</html>
-    
