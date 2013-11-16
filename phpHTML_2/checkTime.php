@@ -44,6 +44,17 @@ function setDefaultTimeMPLSessionVars() {
     echo'</table>';
 }
 
+function setCustomTimeMPLSessionVars(){//Set custom variables
+    if(isset($_GET['iterative'])){//it's iterative
+       $_SESSION['isIterative']='true';
+       $_SESSION['numIterativeQuestions']= $_GET['numIterativeQuestions'];//set number of iterative questions
+    }
+    else{//it's not
+       $_SESSION['isIterative']='false';
+       $_SESSION['numIterativeQuestions']=0;
+    }
+    $_SESSION['numIter']= $_GET['numMainQuestions'];//this sets the custom number of questions
+}
 
 function printSubmitLogic() {
     echo'<form action="writeTimeTXT.php" method="GET">';
@@ -78,7 +89,8 @@ if ($type=="default" && isValidTimeMPLParameters()) {
     setDefaultTimeMPLSessionVars();
 }
 
-if ($type=="custom" /*might need another condition like above*/) {
+if ($type=="custom" /*might need another condition like above*/) {//New 
+    setCustomTimeMPLSessionVars();//function sets number of main questions and iterative questions
     //to be made...
 }
 
