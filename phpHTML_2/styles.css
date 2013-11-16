@@ -190,16 +190,25 @@ padding-right:20px;
 float: left;
 padding-right:20px; 
 }
-.default{
-float: left; 
-padding-right:110px;
+.surveyMode{
+clear: both;
+margin-bottom:1px;
+
+position:relative;
+/*float:left;*/
 }
-.default1{
-width:100%
-height:20%
-/*float:left;
-padding-right:300px;*/
+.customQuestionDiv{
+    clear:both;
 }
+.defaultDiv{
+    
+    float:left;
+}
+/*#iterativeDiv{
+    float:right;
+}*/
+
+
 #numSides{
 float: left;
 padding-right: 50px;
@@ -207,14 +216,14 @@ padding-right: 50px;
 
 #exampleRisk{
 position: absolute;
-    top: 70px;
+    top: 100px;
     right: 0px;
 background-color: #c9c9c9;
 color:#666666;
 }
 #exampleRisk2{
 position: absolute;
-    top: 70px;
+    top: 100px;
     right: 0px;
 background-color: #c9c9c9;
 color:#666666;
@@ -239,4 +248,16 @@ float: none;
 overflow: auto; 
 clear: both;
 float: none;*/
+}
+
+#numIterativeQuestions{
+    width:2em;
+}
+
+#numMainQuestions{
+    width:2em;
+}
+#constChoice{
+    margin-top:15px;
+    margin-bottom:15px;
 }
