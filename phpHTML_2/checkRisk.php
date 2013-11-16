@@ -118,13 +118,17 @@ function printConstantProbabilityTable() {
     }
 }
 
-
+function deleteTxtFiles(){
+    foreach(glob("*.txt*") as $file2) {
+    //echo $file2;
+    unlink($file2); // Delete only .txt files through the loop
+}
+}
 
 
 //
 //EXECUTE RELEVANT LOGIC FOR THIS PAGE
 //
-
 
 session_start();//Start session to save variables
 $type = $_GET['Type'];
