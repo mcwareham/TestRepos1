@@ -21,10 +21,10 @@ function printSurveyMode(){
                 <br>
             </div>
             <div class="customQuestionDiv">
-            Number of Iterative Questions <input type="text" name="numIterativeQuestions" class ="numIterativeQuestions" maxlength="3" value="10"/>
+            Number of Iterative Questions <input type="text" name="numIterativeQuestions" class ="numIterativeQuestions" maxlength="3" style="width: 25px;" value="10"/>
             <br>
             <br>
-            Number of Main Questions <input type="text" name="numMainQuestions" class = "numMainQuestions" maxlength="3" value="10"/>
+            Number of Main Questions <input type="text" name="numMainQuestions" class = "numMainQuestions" maxlength="3"style="width: 25px;" value="10"/>
             </div>
         </div>
 ';
@@ -67,29 +67,35 @@ function printHeadHTML() {//contains files added: css, js, etc
 function printTimeTab() {
     echo '
   	<div class="tabpage" id="tabpage_1">
+        <div class="time">
     	<h2>Time</h2>
     <form action="checkTime.php" method="GET">
         ';
    printSurveyMode();
    printClearFloat();
     echo'
-            <div class="amountsA">
+         <div class="optionWrapper">
+            <div class="amountsA1">
                 <br>
                 <h3>Option A</h3>
                 <br>
-                initial amount: <input type="text" name="aInitial">
+                initial amount: <input type="text" name="aInitial"maxlength="9" style="width: 50px;">
                 <br>
                 <br>
-                final amount: <input type="text" name="aFinal">
+                final amount: <input type="text" name="aFinal" maxlength="9" style="width: 50px;">
             </div>
-            <div class="amountsB">
+            <div class="amountsB1">
                 <br>
                 <h3>Option B</h3>
                 <br>
-                initial amount: <input type="text" name="bInitial">
+                initial amount: <input type="text" name="bInitial"maxlength="9" style="width: 50px;">
                 <br>
                 <br>
-                final amount: <input type="text" name="bFinal">
+                final amount: <input type="text" name="bFinal" maxlength="9" style="width: 50px;">
+             <div class="timeDelay">
+                <br>
+                <h3>Time Delay</h3>
+                <br>
                 time delay: <input type="text" name="delay">
                 <select name="units">
                     <option value="days">days</option>
@@ -97,9 +103,41 @@ function printTimeTab() {
                     <option value="months">months</option>
                     <option value="years">years</years>
                 </select>
+              </div>
+              </div>
             </div>
+            ';
+    printClearFloat();
+    echo'
         <input type="submit">
-    </form>        
+    </form> 
+        <div id=exampleTime>
+            <table border="1">
+                <tr>
+                    <td>Decision</td>
+                    <td>Option A <br> (recieve this amount <br>today)</td>
+                    <td>Option B <br> (recieve this amount in <br>30<b> [Time Delay]</b> days)</td>
+                </tr>
+                <tr>
+                <td>1</td>
+                <td>8 <b>[A Initial]</b></td>
+                <td>7<b>[B Initial]</td>
+                </tr>
+                <tr><td>2</td><td>8</td><td>8</td></tr>
+                <tr><td>3</td><td>8</td><td>9</td></tr>
+                <tr><td>4</td><td>8</td><td>10</td></tr>
+                <tr><td>5</td><td>8</td><td>11</td></tr>
+                <tr><td>6</td><td>8</td><td>12</td></tr>
+                <tr><td>7</td><td>8</td><td>13</td></tr>
+                <tr><td>8</td><td>8</td><td>14</td></tr>
+                <tr><td>9</td><td>8</td><td>15</td></tr>
+                <tr>
+                <td>10</td>
+                <td>8 <b>[A Final]</b></td>
+                <td>16<b>[B Final]</b></td></tr>
+           </table>
+        </div>
+    </div>
     </div>'
     ;
 }
@@ -186,8 +224,8 @@ function printRiskTab() {
 		</tr>
 		<tr>
 			<td>1</td>
-			<td> $2.00 if die roll is one <br>(A1 INITIAL)<br>$1.60 if die roll is 2-10<br> (A2 INITIAL)</td>
-			<td> $3.85 if die roll is one <br>(B1 INITIAL)<br>$0.10 if die roll is 2-10<br>(B2 INITIAL)</td>
+			<td> $2.00 <b>(A1 INITIAL)</b><br> if die roll is one <br>$1.60 <b>(A2 INITIAL)</b><br>if die roll is 2-10</td>
+			<td> $3.85 <b>(B1 INITIAL)</b><br>if die roll is one <br>$0.10 <b>(B2 INITIAL)</b><br> if die roll is 2-10</td>
 		</tr>
 		<tr>
 			<td>2</td>
@@ -231,8 +269,8 @@ function printRiskTab() {
 		</tr>
 		<tr>
 			<td>10</td>
-			<td> $2.00 if die roll is one-10 </td>
-			<td> $3.85 if die roll is one-10 </td>
+			<td> $2.00 if die roll is one-10 <br> <b>(Number of sides = 10)</b></td>
+			<td> $3.85 if die roll is one-10 <br> <b>(Number of sides = 10)</b></td>
 		</tr>
 	</table>
 	</div>
@@ -329,7 +367,7 @@ function printTimeAndRiskTab() {
             <br>
             delayed amount: <input type="text" name="b1Final">	
         </div>
-		<div class="amountsA2" id = "A2">
+	<div class="amountsA2" id = "A2">
             <br>
             <h3>Option A2</h3>
             <br>
@@ -376,27 +414,27 @@ function printTimeAndRiskTab() {
                 <td>Option B </td>
             </tr>
             <tr>
-                <td> If die roll is 1 receive:<br/> $3.85 today and $0.10 in 30 days
-                <br> (A1 CURRENT/ A1 DELAYED)
-                <br>If die roll is 2-10 receive:<br/> $0.10 today and $3.85 in 30 days
-                 <br> (A2 CURRENT/ A2 DELAYED)
+                <td> If die roll is 1 receive:<br/> $3.85 <b>(A1 CURRENT)</b> today  <br>
+                and $0.10 <b>(A1 DELAYED)</b> 
+                <br>in 30 days
+                <br>If die roll is 2-10 receive:<br/> $0.10 <b>(A2 CURRENT)</b> today<br>
+                and $3.85  <b>(A1 DELAYED)</b> 
+                <br>in 30 days
                 </td>
-                <td> If die roll is 1 receive:<br/> $3.85 today and $3.85 in 30 days
-                <br> (B1 CURRENT)/ B1 DELAYED)
-                <br>If die roll is 2-10 receive:<br/> $0.10 today and $0.10 in 30 days
-                <br> (B2 CURRENT/ B2 DELAYED)
+                <td> If die roll is 1 receive:<br/> $3.85 <b>(B1 CURRENT)</b>today <br>
+                and $3.85 <b>(B1 DELAYED)</b>
+                <br>in 30 days
+                <br>If die roll is 2-10 receive:<br/> $0.10 <b>(B2 CURRENT)</b>today <br>
+                and $0.10 <b>(B2 DELAYED)</b>
+                <br>in 30 days
                  </td>
             </tr>
             <tr>
                 <td> If die roll is 1-2 receive:<br/> $3.85 today and $0.10 in 30 days
-                 <br> (A1 CURRENT/ A1 DELAYED)
                 <br>If die roll is 3-10 receive:<br/> $0.10 today and $3.85 in 30 days
-                 <br> (A2 CURRENT/ A2 DELAYED)
                 </td>
                 <td> If die roll is 1-2 receive:<br/> $3.85 today and $3.85 in 30 days
-                <br> (B1 CURRENT)/ B1 DELAYED)
                 <br>If die roll is 3-10 receive:<br/> $0.10 today and $0.10 in 30 days
-                <br> (B2 CURRENT/ B2 DELAYED)
                 </td>
             </tr>
             
@@ -456,11 +494,13 @@ function printTimeAndRiskTab() {
             <br>If die roll is 10 receive:<br/> $0.10 today and $0.10 in 30 days
             </td>
         <tr>
-            <td> If die roll is 1-10 receive:<br/> $3.85 today and $0.10 in 30 days
-            <br>(A1 CURRENT/ A1 DELAYED)
+            <td> If die roll is 1-10 receive:<br/> $3.85 <b>(A1 CURRENT)</b> today 
+            <br> and $0.10 <b>(A1 DELAYED)</b>
+            <br>in 30 days
             </td>
-            <td> If die roll is 1-10 receive:<br/> $3.85 today and $3.85 in 30 days
-            <br>(B1 CURRENT/ B1 DELAYED)
+            <td> If die roll is 1-10 receive:<br/> $3.85 <b>(B1 CURRENT)</b>today 
+            <br>and $3.85 <b>(B1 DELAYED)</b>
+            <br>in 30 days
             </td>
         </tr>
         </table> 
@@ -481,7 +521,7 @@ function printAmbiguityTab() {
         
     echo'
      	<div class="amountsA1">
-            <h3>Option A (correctly guessed)</h3>
+            <h3>Option A (Win)</h3>
             <br>
             Starting amount: <input type="text" name="a1Initial">
             <br>
@@ -490,7 +530,7 @@ function printAmbiguityTab() {
 
         </div>
         <div class="amountsB1">
-            <h3>Option B (correctly guessed)</h3>
+            <h3>Option B (Win)</h3>
             <br>
             Starting amount: <input type="text" name="b1Initial">
             <br>
@@ -499,7 +539,7 @@ function printAmbiguityTab() {
         </div>
 	<div class="amountsA2" id = "A2">
             <br>
-            <h3>Option A (incorrectly guessed)</h3>
+            <h3>Option A (Lose)</h3>
             <br>
             Starting amount: <input type="text" name="a2Initial">
             <br>
@@ -508,36 +548,224 @@ function printAmbiguityTab() {
         </div>
         <div class="amountsB2" id= "B2">
             <br>
-            <h3>Option B (incorrectly guessed)</h3>
+            <h3>Option B (Lose)</h3>
             <br>
-            current amount: <input type="text" name="b2Initial">
+            Starting amount: <input type="text" name="b2Initial">
             <br>
             <br>
-            delayed amount: <input type="text" name="b2Final">
+            Ending amount: <input type="text" name="b2Final">
         </div>
-        <br>
-        <h3> Probability and Delay </h3>
-        <br>
-        <div id="numSides">
-            Number of Dice sides: <input type="text" name="sides">
-			<br>
-			<br>
-			time delay: <input type="text" name="delay">
-        <select name="units">
-                    <option value="days">days</option>
-                    <option value="weeks">weeks</option>
-                    <option value="months">months</option>
-                    <option value="years">years</years>
-                </select>
-                <br>
-                <br>
-                <div id="submit">
-                <input type="submit">
-                </div>
+        
+        <div id="submitAmbiguity">
+            <input type="submit">
         </div>
+      
         
   
     </form>
+    <div id=exampleAmbiguity>
+        
+             
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 320px;">
+                <tbody>
+		<tr>
+			<td style="width: 40px; text-align: center;"><strong>Decision</strong></td>
+			<td style="width: 160px; text-align: center;"><strong>Option A: Urn A</strong>
+			<table border="1" cellpadding="1" cellspacing="1" style="text-align: center; height: 40px; width: 140px;">
+				<tbody>
+					<tr>
+						<td style="text-align: left;">If the ball is the color chosen</td>
+						<td style="text-align: left;">If the ball is&nbsp;<em><strong>not</strong></em>&nbsp;the color chosen</td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+			<td style="width: 160px; text-align: center;"><strong>Option B: Urn B</strong>
+			<table border="1" cellpadding="1" cellspacing="1" style="text-align: center; height: 40px; width: 140px;">
+				<tbody>
+					<tr>
+						<td style="text-align: left;">If the ball is the color chosen</td>
+						<td style="text-align: left;">If the ball is&nbsp;<em><strong>not</strong></em>&nbsp;the color chosen</td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+            <table border="1" cellpadding="1" cellspacing="1" style="width: 340px; "> 
+                <tbody>  
+                    <tr>   
+                        <td style="width: 55px; text-align: center; ">1</td>
+                              
+                                  
+                                <td style="text-align: center;width: 66px;">$20.00<br> A (Win)<br> Starting</td>      
+                                <td style="text-align: center;width: 66px;">$0.00<br> A (Lose)<br> Starting</td>        
+                                <td style="text-align: center;width: 66px;">$10.00<br> B (Win)<br> Starting</td>      
+                                <td style="text-align: center;width: px;">$0.00<br> B (Lose)<br> Starting</td>     
+                                  
+                                </tbody>   
+                            </table>   
+                          </td>  
+                    </tr> 
+                 </tbody>
+             </table>
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 340px; "> 
+                <tbody>  
+                    <tr>   
+                        <td style="width: 55px; text-align: center; ">2</td>
+                              
+                                  
+                                <td style="text-align: center;width: 66px;">$18.00</td>      
+                                <td style="text-align: center;width: 66px;">$0.00</td>        
+                                <td style="text-align: center;width: 66px;">$10.00</td>      
+                                <td style="text-align: center;width: px;">$0.00</td>     
+                                  
+                                </tbody>   
+                            </table>   
+                          </td>  
+                    </tr> 
+                 </tbody>
+             </table>
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 340px; "> 
+                <tbody>  
+                    <tr>   
+                        <td style="width: 55px; text-align: center; ">3</td>
+                              
+                                  
+                                <td style="text-align: center;width: 66px;">$16.00</td>      
+                                <td style="text-align: center;width: 66px;">$0.00</td>        
+                                <td style="text-align: center;width: 66px;">$10.00</td>      
+                                <td style="text-align: center;width: px;">$0.00</td>     
+                                  
+                                </tbody>   
+                            </table>   
+                          </td>  
+                    </tr> 
+                 </tbody>
+             </table>
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 340px; "> 
+                <tbody>  
+                    <tr>   
+                        <td style="width: 55px; text-align: center; ">4</td>
+                              
+                                  
+                                <td style="text-align: center;width: 66px;">$14.00</td>      
+                                <td style="text-align: center;width: 66px;">$0.00</td>        
+                                <td style="text-align: center;width: 66px;">$10.00</td>      
+                                <td style="text-align: center;width: px;">$0.00</td>     
+                                  
+                                </tbody>   
+                            </table>   
+                          </td>  
+                    </tr> 
+                 </tbody>
+             </table>
+              <table border="1" cellpadding="1" cellspacing="1" style="width: 340px; "> 
+                <tbody>  
+                    <tr>   
+                        <td style="width: 55px; text-align: center; ">5</td>
+                              
+                                  
+                                <td style="text-align: center;width: 66px;">$12.00</td>      
+                                <td style="text-align: center;width: 66px;">$0.00</td>        
+                                <td style="text-align: center;width: 66px;">$10.00</td>      
+                                <td style="text-align: center;width: px;">$0.00</td>     
+                                  
+                                </tbody>   
+                            </table>   
+                          </td>  
+                    </tr> 
+                 </tbody>
+             </table>
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 340px; "> 
+                <tbody>  
+                    <tr>   
+                        <td style="width: 55px; text-align: center; ">6</td>
+                              
+                                  
+                                <td style="text-align: center;width: 66px;">$10.00</td>      
+                                <td style="text-align: center;width: 66px;">$0.00</td>        
+                                <td style="text-align: center;width: 66px;">$10.00</td>      
+                                <td style="text-align: center;width: px;">$0.00</td>     
+                                  
+                                </tbody>   
+                            </table>   
+                          </td>  
+                    </tr> 
+                 </tbody>
+             </table>
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 340px; "> 
+                <tbody>  
+                    <tr>   
+                        <td style="width: 55px; text-align: center; ">7</td>
+                              
+                                  
+                                <td style="text-align: center;width: 66px;">$8.00</td>      
+                                <td style="text-align: center;width: 66px;">$0.00</td>        
+                                <td style="text-align: center;width: 66px;">$10.00</td>      
+                                <td style="text-align: center;width: px;">$0.00</td>     
+                                  
+                                </tbody>   
+                            </table>   
+                          </td>  
+                    </tr> 
+                 </tbody>
+             </table>
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 340px; "> 
+                <tbody>  
+                    <tr>   
+                        <td style="width: 55px; text-align: center; ">8</td>
+                              
+                                  
+                                <td style="text-align: center;width: 66px;">$6.00</td>      
+                                <td style="text-align: center;width: 66px;">$0.00</td>        
+                                <td style="text-align: center;width: 66px;">$10.00</td>      
+                                <td style="text-align: center;width: px;">$0.00</td>     
+                                  
+                                </tbody>   
+                            </table>   
+                          </td>  
+                    </tr> 
+                 </tbody>
+             </table>
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 340px; "> 
+                <tbody>  
+                    <tr>   
+                        <td style="width: 55px; text-align: center; ">9</td>
+                              
+                                  
+                                <td style="text-align: center;width: 66px;">$4.00</td>      
+                                <td style="text-align: center;width: 66px;">$0.00</td>        
+                                <td style="text-align: center;width: 66px;">$10.00</td>      
+                                <td style="text-align: center;width: px;">$0.00</td>     
+                                  
+                                </tbody>   
+                            </table>   
+                          </td>  
+                    </tr> 
+                 </tbody>
+             </table>
+              <table border="1" cellpadding="1" cellspacing="1" style="width: 340px; "> 
+                <tbody>  
+                    <tr>   
+                        <td style="width: 55px; text-align: center; ">10</td>
+                              
+                                  
+                                <td style="text-align: center;width: 66px;">$2.00<br> A (Win)<br> Ending</td>      
+                                <td style="text-align: center;width: 66px;">$0.00<br> A (Lose)<br> Ending</td>        
+                                <td style="text-align: center;width: 66px;">$10.00<br> B (Win)<br> Ending</td>      
+                                <td style="text-align: center;width: px;">$0.00<br> B (Lose)<br> Ending</td>     
+                                  
+                                </tbody>   
+                            </table>   
+                          </td>  
+                    </tr> 
+                 </tbody>
+             </table>
+
+
+    </div>
       
     </div>
       
