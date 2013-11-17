@@ -204,10 +204,16 @@ position:relative;
     
     float:left;
 }
+.timeDelay{
+    float:left;
+    margin-bottom:20px;
+}
 /*#iterativeDiv{
     float:right;
 }*/
-
+.optionWrapper{
+    width:300px;
+}
 
 #numSides{
 float: left;
@@ -235,6 +241,20 @@ position: absolute;
 background-color: #c9c9c9;
 color:#666666;
 }
+#exampleAmbiguity{
+    position: absolute;
+    top:25px;
+    right:25px;
+    background-color: #c9c9c9;
+    color:#666666;
+}
+#exampleTime{
+    position: absolute;
+    top:40px;
+    right:60px;
+    background-color: #c9c9c9;
+    color:#666666;
+}
 #tabpage_3{
  position: relative;
 
@@ -244,10 +264,15 @@ float: none;
 }
 #tabpage_2{
  position: relative;
-/*
-overflow: auto; 
-clear: both;
-float: none;*/
+
+}
+#tabpage_4{
+ position: relative;
+
+}
+#tabpage_1{
+ position: relative;
+
 }
 
 #numIterativeQuestions{
@@ -261,3 +286,8 @@ float: none;*/
     margin-top:15px;
     margin-bottom:15px;
 }
+#submitAmbiguity{/*add spacing for example*/
+    margin-top: 10px;
+    margin-bottom:60px;
+}
+
