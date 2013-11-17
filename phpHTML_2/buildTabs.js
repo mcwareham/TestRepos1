@@ -2,7 +2,16 @@ history.navigationMode = 'compatible';
 $(document).ready(function(){
    $('#tabContainer').acidTabs();
    
+   
+   
+    $('.tabpage').each(function(){
+        if ($(this).find('.time').length ==0) {
+             $(this).find('.Type').prop('disabled', 'disabled');
+        }
+    });
+   
     //logic for Default or Custom setting
+    
     
     
     $('.Type').each(function(){
@@ -12,7 +21,7 @@ $(document).ready(function(){
     if($(this).val()==='default'){
         $(this).parent().parent().find('.iterativeDiv').hide();
         $(this).parent().parent().find('.customQuestionDiv').hide();
-        //alert();
+        
     }
     else{
         $(this).parent().parent().find('.iterativeDiv').show();
