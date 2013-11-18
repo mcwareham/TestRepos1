@@ -6,17 +6,22 @@
 //DEFINE FUNCTIONS FIRST
 //
 
-function setDefaultTimeMPLSessionVars() {
-    $_SESSION['numIter'] =10;
-
+//shared? common?  trying to think of best word!
+function setSharedTimeMPLSessionVars() {
     $_SESSION['aStart'] = $_GET['aInitial'];
     $_SESSION['aEnd'] = $_GET['aFinal'];
     $_SESSION['bStart'] = $_GET['bInitial'];
     $_SESSION['bEnd'] = $_GET['bFinal'];
     $_SESSION['delay'] = $_GET['delay'];
     $_SESSION['units'] = $_GET['units'];
-    $_SESSION['aSegs'] = ($_SESSION['aEnd']- $_SESSION['aStart'])/($_SESSION['numIter']-1);
-    $_SESSION['bSegs'] = ($_SESSION['bEnd']-$_SESSION['bStart'])/($_SESSION['numIter']-1);
+    $_SESSION['aSegs'] = ($_SESSION['aEnd']- $_SESSION['aStart'])/($_SESSION['numMainQuestions']-1);
+    $_SESSION['bSegs'] = ($_SESSION['bEnd']-$_SESSION['bStart'])/($_SESSION['numMainQuestions']-1);
+}
+
+function setDefaultTimeMPLSessionVars() {
+    $_SESSION['numMainQuestions'] = 10;
+
+    setSharedTimeMPLSessionVars();    
 
     echo'<table border="1">';
     echo'<tr>';
@@ -27,7 +32,7 @@ function setDefaultTimeMPLSessionVars() {
 
     $aSum=$_SESSION['aStart'];
     $bSum=$_SESSION['bStart'];
-    for($i=1; $i<=$_SESSION['numIter']; $i++) {
+    for($i=1; $i<=$_SESSION['numMainQuestions']; $i++) {
         echo'<tr>';
         echo'<td>'.$i.'</td>';
         echo'<td>' . round($aSum,2).'</td>';
@@ -45,15 +50,20 @@ function setDefaultTimeMPLSessionVars() {
 }
 
 function setCustomTimeMPLSessionVars(){//Set custom variables
+    $_SESSION['numMainQuestions']= $_GET['numMainQuestions'];//this sets the custom number of questions
+     setSharedTimeMPLSessionVars();  
+    
     if(isset($_GET['iterative'])){//it's iterative
-       $_SESSION['isIterative']='true';
-       $_SESSION['numIterativeQuestions']= $_GET['numIterativeQuestions'];//set number of iterative questions
+        $_SESSION['isIterative']='true';
+        $_SESSION['numIterativeQuestions']= $_GET['numIterativeQuestions'];//set number of iterative questions
     }
-    else{//it's not
-       $_SESSION['isIterative']='false';
-       $_SESSION['numIterativeQuestions']=0;
+    else{//it's not       
+        $_SESSION['isIterative']='false';       
+        $_SESSION['numIterativeQuestions']=0;
+       
+            
     }
-    $_SESSION['numIter']= $_GET['numMainQuestions'];//this sets the custom number of questions
+    
 }
 
 function printSubmitLogic() {
@@ -83,13 +93,14 @@ $myFile = "fileName.html";
 $fh = fopen($myFile, 'w') or die("can't open");*/
 //print_r(error_get_last());
 
-$type = $_GET['Type'];
+$_SESSION['type'] = $_GET['Type'];
+ 
 
-if ($type=="default" && isValidTimeMPLParameters()) {    
+if ($_SESSION['type'] == "default" && isValidTimeMPLParameters()) {    
     setDefaultTimeMPLSessionVars();
 }
 
-if ($type=="custom" /*might need another condition like above*/) {//New 
+if ($_SESSION['type'] == "custom" /*might need another condition like above*/) {//New 
     setCustomTimeMPLSessionVars();//function sets number of main questions and iterative questions
     //to be made...
 }
