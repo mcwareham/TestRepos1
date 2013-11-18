@@ -4,10 +4,13 @@ $(document).ready(function(){
    
    
    
-    $('.tabpage').each(function(){
+   $('.tabpage').each(function(){
         if ($(this).find('.time').length ==0) {
              $(this).find('.Type').prop('disabled', 'disabled');
         }
+    });
+    $('form').bind('submit', function() {
+        $(this).find('.Type').removeAttr('disabled');
     });
    
     //logic for Default or Custom setting
