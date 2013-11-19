@@ -212,7 +212,7 @@ position:relative;
     float:right;
 }*/
 .optionWrapper{
-    width:300px;
+    width:350px;
 }
 
 #numSides{
@@ -224,6 +224,7 @@ padding-right: 50px;
 position: absolute;
     top: 100px;
     right: 0px;
+    width:330px;
 background-color: #c9c9c9;
 color:#666666;
 }
@@ -238,6 +239,7 @@ color:#666666;
 position: absolute;
     top: 70px;
     right: 0px;
+    width:330px;
 background-color: #c9c9c9;
 color:#666666;
 }
@@ -245,6 +247,7 @@ color:#666666;
     position: absolute;
     top:25px;
     right:25px;
+    width:330px;
     background-color: #c9c9c9;
     color:#666666;
 }
@@ -254,6 +257,7 @@ color:#666666;
     right:60px;
     background-color: #c9c9c9;
     color:#666666;
+    width:300px;
 }
 #tabpage_3{
  position: relative;
@@ -288,6 +292,8 @@ float: none;
 }
 #submitAmbiguity{/*add spacing for example*/
     margin-top: 10px;
-    margin-bottom:60px;
+    margin-bottom:100px;
 }
-
+#spacer{
+    height:120px;
+}
