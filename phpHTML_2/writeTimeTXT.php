@@ -7,7 +7,8 @@
 //DEFINE FUNCTIONS FIRST
 //
 
-function getDefaultSurveyString($aStart, $bStart) {
+
+function build_TimeMPL_BasicSurvey($aStart, $bStart) {
     /*
      * Unfortunately finicky---gotta leave the stuff in [[]] all the way to the left margin
      */
@@ -34,7 +35,7 @@ function getDefaultSurveyString($aStart, $bStart) {
 
     $aSum= $aStart;
     $bSum= $bStart;
-    for($i=1; $i<=$_SESSION['numIter']; $i++){
+    for($i=1; $i<=$_SESSION['numMainQuestions']; $i++){
         $string .= '
             <table border="1" cellpadding="1" cellspacing="1" style="width: 500px; "> <tbody>  <tr>   <td style="width: 64px; text-align: center; ">'.$i.'</td>   <td style="width: 228px; text-align: center; ">'.round($aSum,2).'</td>   <td style="width: 228px; text-align: center; ">'.round($bSum,2).'</td>  </tr> </tbody></table>
         ';
@@ -71,11 +72,6 @@ function writeSurveyStringToFile($fileName, $ext, $string) {
     //exit;
 }
 
-function getCustomSurveyString($mode) { //name of this might need to be changed we'll see
-    if ($mode == 0)  { //for now treating this as corresponding to iterative survey
-        
-    }
-}
 
 function build_TimeMPL_IterativeSurvey($surveyName, $surveyDescription, $surveyBrandID, $currentTime, $totalDecisionsInMainQuestion, $totalDecisionsInSubQuestions, $aStart, $bStart, $aIncrement, $bIncrement) {
 
@@ -242,9 +238,22 @@ function buildSingleQuestionTable($QID, $numQuestionsInTable, $aStart, $bStart, 
     $s4 = '":{"Display":"<table border=\"1\" cellpadding=\"1\" cellspacing=\"1\" style=\"width: 500px;\">\n <tbody>\n  <tr>\n   <td style=\"width: 64px; text-align: center;\">';
     $s5 = '<\/td>\n   <td style=\"width: 228px; text-align: center;\">';
     $s6 = '<\/td>\n  <\/tr>\n <\/tbody>\n<\/table>"},"';
-    $s7 = '<\/td>\n  <\/tr>\n <\/tbody>\n<\/table>"}},"ChoiceOrder":[1,2,3,4,5,6,7,8,9,10],"Validation":{"Settings":{"ForceResponse":"OFF","ForceResponseType":"ON","Type":"None"}},"GradingData":[],"Language":[],"Answers":{"1":{"Display":"<strong>A<\/strong>"},"2":{"Display":"<strong>B<\/strong>"}},"AnswerOrder":[1,2],"ChoiceDataExportTags":false,"QuestionID":"QID';
+  
+    $s7a = '<\/td>\n  <\/tr>\n <\/tbody>\n<\/table>"}},"ChoiceOrder":[';
+    //$s7a is added to further down in a for loop...
+    $s7b = '],"Validation":{"Settings":{"ForceResponse":"OFF","ForceResponseType":"ON","Type":"None"}},"GradingData":[],"Language":[],"Answers":{"1":{"Display":"<strong>A<\/strong>"},"2":{"Display":"<strong>B<\/strong>"}},"AnswerOrder":[1,2],"ChoiceDataExportTags":false,"QuestionID":"QID';
+    
     $s8 = '"}}';
+    
+    for ($i = 1; $i <= $numQuestionsInTable; $i++) {
+        if ($i == $numQuestionsInTable) {
+            $s7a .= $i;
+        } else {
+            $s7a .= $i . ',';
+        }
+    }
 
+    $s7 = $s7a . $s7b; //only ended up doing this because I messed up at first...otherwise would have like $s9 and $s10 I guess....
 
     $finalString = "{$s1}{$QID}{$s2}{$QID}{$s3}";
 
@@ -328,8 +337,43 @@ date_default_timezone_set('America/Anchorage');
 
 ini_set('display_errors', 1);
 error_reporting(~0);
-//writeSurveyStringToFile($_GET['fileName'], '.txt', getDefaultSurveyString($_SESSION['aStart'], $_SESSION['bStart']));
-writeSurveyStringToFile($_GET['fileName'], '.qsf', build_TimeMPL_IterativeSurvey($_GET['fileName'], getSurveyDescription(), getSurveyBrandID(), getCurrentTime(), $_SESSION['numIter'], 5/*need a session variable for this eventually*/, $_SESSION['aStart'], $_SESSION['bStart'], $_SESSION['aSegs'], $_SESSION['bSegs']));
+
+/*
+ * Notice: default (with 10 main questions) vs. "custom" with just the main
+ * question count different than 10, both use the exact same method 
+ * call to create a survey.  So I changed the method name to build_TimeMPL_Basic
+ * for now.  Also, during refactoring at a later point, it might make sense to
+ * either go one of two ways: pass the parameters like I did with the 
+ * build_TimeMPL_IterativeSurvey (even though they're global $SESSION, or simply 
+ * use the fact that the $_SESSION variables are already defined, as you had 
+ * with the build_TimeMPL_BasicSurvey---we'll see, low priority right now!
+ */
+
+if ($_SESSION['isIterative'] == 'true') {
+    writeSurveyStringToFile($_GET['fileName'], '.qsf', build_TimeMPL_IterativeSurvey($_GET['fileName'], getSurveyDescription(), getSurveyBrandID(), getCurrentTime(), $_SESSION['numMainQuestions'], $_SESSION['numIterativeQuestions'], $_SESSION['aStart'], $_SESSION['bStart'], $_SESSION['aSegs'], $_SESSION['bSegs']));
+} else {
+    writeSurveyStringToFile($_GET['fileName'], '.txt', build_TimeMPL_BasicSurvey($_SESSION['aStart'], $_SESSION['bStart']));
+}
+
+/*
+ * Below if chain was original logic, but the above if chain results in the same 
+ * thing with less repetition, at the expense of it maybe being a tiny bit less
+ * clear...maybe.
+ */
+
+//Left this as it goes with the above comment and also just in case...eventually can delete though.
+/*
+if ($_SESSION['type'] == 'default') {
+    writeSurveyStringToFile($_GET['fileName'], '.txt', build_TimeMPL_BasicSurvey($_SESSION['aStart'], $_SESSION['bStart']));
+} elseif ($_SESSION['type'] == 'custom') { //elseif might be unnecessary, it doesn't matter much though right now at last...
+    if ($_SESSION['isIterative'] == 'true') {               
+        writeSurveyStringToFile($_GET['fileName'], '.qsf', build_TimeMPL_IterativeSurvey($_GET['fileName'], getSurveyDescription(), getSurveyBrandID(), getCurrentTime(), $_SESSION['numMainQuestions'], $_SESSION['numIterativeQuestions'], $_SESSION['aStart'], $_SESSION['bStart'], $_SESSION['aSegs'], $_SESSION['bSegs']));
+    } else {
+        writeSurveyStringToFile($_GET['fileName'], '.txt', build_TimeMPL_BasicSurvey($_SESSION['aStart'], $_SESSION['bStart']));
+    }
+}
+*/
+
 exit;
 
 
