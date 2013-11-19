@@ -50,7 +50,6 @@ function printHeadHTML() {//contains files added: css, js, etc
     </head>
     <body>
     <div id="wrapper">
-        <h1>Creating my first jQuery Plugin Acid Tabs</h1>
         <div id="tabContainer">
           <div class="tabs">
             <ul>
@@ -212,6 +211,8 @@ function printRiskTab() {
         </div>
         <div id="submit">
             <input type="submit">
+        </div>
+        <div id="spacer">
         </div>
        
     </form>
@@ -566,12 +567,12 @@ function printAmbiguityTab() {
     <div id=exampleAmbiguity>
         
              
-             <table border="1" cellpadding="1" cellspacing="1" style="width: 320px;">
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 300px;">
                 <tbody>
 		<tr>
 			<td style="width: 40px; text-align: center;"><strong>Decision</strong></td>
-			<td style="width: 160px; text-align: center;"><strong>Option A: Urn A</strong>
-			<table border="1" cellpadding="1" cellspacing="1" style="text-align: center; height: 40px; width: 140px;">
+			<td style="width: 130px; text-align: center;"><strong>Option A: Urn A</strong>
+			<table border="1" cellpadding="1" cellspacing="1" style="text-align: center; height: 40px; width: 130px;">
 				<tbody>
 					<tr>
 						<td style="text-align: left;">If the ball is the color chosen</td>
@@ -580,8 +581,8 @@ function printAmbiguityTab() {
 				</tbody>
 			</table>
 			</td>
-			<td style="width: 160px; text-align: center;"><strong>Option B: Urn B</strong>
-			<table border="1" cellpadding="1" cellspacing="1" style="text-align: center; height: 40px; width: 140px;">
+			<td style="width: 130px; text-align: center;"><strong>Option B: Urn B</strong>
+			<table border="1" cellpadding="1" cellspacing="1" style="text-align: center; height: 40px; width: 130px;">
 				<tbody>
 					<tr>
 						<td style="text-align: left;">If the ball is the color chosen</td>
@@ -593,7 +594,7 @@ function printAmbiguityTab() {
 		</tr>
 	</tbody>
 </table>
-            <table border="1" cellpadding="1" cellspacing="1" style="width: 340px; "> 
+            <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "> 
                 <tbody>  
                     <tr>   
                         <td style="width: 55px; text-align: center; ">1</td>
@@ -610,7 +611,7 @@ function printAmbiguityTab() {
                     </tr> 
                  </tbody>
              </table>
-             <table border="1" cellpadding="1" cellspacing="1" style="width: 340px; "> 
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "> 
                 <tbody>  
                     <tr>   
                         <td style="width: 55px; text-align: center; ">2</td>
@@ -627,7 +628,7 @@ function printAmbiguityTab() {
                     </tr> 
                  </tbody>
              </table>
-             <table border="1" cellpadding="1" cellspacing="1" style="width: 340px; "> 
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "> 
                 <tbody>  
                     <tr>   
                         <td style="width: 55px; text-align: center; ">3</td>
@@ -644,7 +645,7 @@ function printAmbiguityTab() {
                     </tr> 
                  </tbody>
              </table>
-             <table border="1" cellpadding="1" cellspacing="1" style="width: 340px; "> 
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "> 
                 <tbody>  
                     <tr>   
                         <td style="width: 55px; text-align: center; ">4</td>
@@ -661,7 +662,7 @@ function printAmbiguityTab() {
                     </tr> 
                  </tbody>
              </table>
-              <table border="1" cellpadding="1" cellspacing="1" style="width: 340px; "> 
+              <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "> 
                 <tbody>  
                     <tr>   
                         <td style="width: 55px; text-align: center; ">5</td>
@@ -678,7 +679,7 @@ function printAmbiguityTab() {
                     </tr> 
                  </tbody>
              </table>
-             <table border="1" cellpadding="1" cellspacing="1" style="width: 340px; "> 
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "> 
                 <tbody>  
                     <tr>   
                         <td style="width: 55px; text-align: center; ">6</td>
@@ -695,7 +696,7 @@ function printAmbiguityTab() {
                     </tr> 
                  </tbody>
              </table>
-             <table border="1" cellpadding="1" cellspacing="1" style="width: 340px; "> 
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "> 
                 <tbody>  
                     <tr>   
                         <td style="width: 55px; text-align: center; ">7</td>
@@ -712,7 +713,7 @@ function printAmbiguityTab() {
                     </tr> 
                  </tbody>
              </table>
-             <table border="1" cellpadding="1" cellspacing="1" style="width: 340px; "> 
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "> 
                 <tbody>  
                     <tr>   
                         <td style="width: 55px; text-align: center; ">8</td>
@@ -729,7 +730,7 @@ function printAmbiguityTab() {
                     </tr> 
                  </tbody>
              </table>
-             <table border="1" cellpadding="1" cellspacing="1" style="width: 340px; "> 
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "> 
                 <tbody>  
                     <tr>   
                         <td style="width: 55px; text-align: center; ">9</td>
@@ -746,7 +747,7 @@ function printAmbiguityTab() {
                     </tr> 
                  </tbody>
              </table>
-              <table border="1" cellpadding="1" cellspacing="1" style="width: 340px; "> 
+              <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "> 
                 <tbody>  
                     <tr>   
                         <td style="width: 55px; text-align: center; ">10</td>
