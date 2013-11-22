@@ -5,6 +5,13 @@
 //
 //DEFINE FUNCTIONS FIRST
 //
+function deleteTxtFiles(){//should this be in the index?
+    foreach(glob("*.txt*") as $file2) {
+    //echo $file2;
+    unlink($file2); // Delete only .txt files through the loop
+}
+}
+
 function printSurveyMode(){
     echo'
         <div class ="surveyMode">
@@ -78,19 +85,46 @@ function printTimeTab() {
                 <br>
                 <h3>Option A</h3>
                 <br>
-                initial amount: <input type="text" name="aInitial"maxlength="9" style="width: 50px;">
-                <br>
-                <br>
-                final amount: <input type="text" name="aFinal" maxlength="9" style="width: 50px;">
+                <div class="incrementSelect">
+                    <select name="count" class="count">
+                        <option value="increments"selected="selected">$ Increments</option>
+                        <option value="finalValue">Starting & Ending</option>
+                    </select>
+                    <br>
+                    <br>
+                    initial amount: <input type="text" name="aInitial"maxlength="9" style="width: 50px;">
+                    <div class ="incrementalDiv">
+                        <br>
+                        $ increments: <input type="text" name="aIncrement" class="incrementVal"value="0" maxlength="9" style="width: 50px;">
+                    </div>
+                    <div class="finalAmountDiv">
+                        <br>
+                        final amount: <input type="text" name="aFinal" class="finalAmountVal" maxlength="9" style="width: 50px;">
+                    </div>
+              </div>
             </div>
             <div class="amountsB1">
                 <br>
                 <h3>Option B</h3>
                 <br>
-                initial amount: <input type="text" name="bInitial"maxlength="9" style="width: 50px;">
-                <br>
-                <br>
-                final amount: <input type="text" name="bFinal" maxlength="9" style="width: 50px;">
+                <div class="incrementSelect">
+                    <select name="count" class="count">
+                        <option value="increments"selected="selected">$ Increments</option>
+                        <option value="finalValue">Starting & Ending</option>
+                    </select>
+                    <br>
+                    <br>
+                    initial amount: <input type="text" name="bInitial"maxlength="9" style="width: 50px;">
+                    <div class ="incrementalDiv">
+                        <br>
+                        $ increments: <input type="text" name="bIncrement" class="incrementVal"value="0" maxlength="9" style="width: 50px;">
+                    </div>
+                    <div class="finalAmountDiv">
+                        <br>
+                        final amount: <input type="text" name="bFinal" class="finalAmountVal" maxlength="9" style="width: 50px;">
+                    </div>
+                </div>
+            </div>
              <div class="timeDelay">
                 <br>
                 <h3>Time Delay</h3>
@@ -122,7 +156,7 @@ function printTimeTab() {
                 <td>8 <b>[A Initial]</b></td>
                 <td>7<b>[B Initial]</td>
                 </tr>
-                <tr><td>2</td><td>8</td><td>8</td></tr>
+                <tr><td>2</td><td>8<b> [A $ increments <br>= 0]</b></td><td>8 <b>[B $ increments <br>= 1]</b></td></tr>
                 <tr><td>3</td><td>8</td><td>9</td></tr>
                 <tr><td>4</td><td>8</td><td>10</td></tr>
                 <tr><td>5</td><td>8</td><td>11</td></tr>
@@ -788,7 +822,7 @@ function printTailHTML() {
 //
 //EXECUTE RELEVANT LOGIC FOR THIS PAGE
 //
-
+deleteTxtFiles();
 printHeadHTML();//contains javascript files
 printTimeTab();
 printRiskTab();
