@@ -5,13 +5,44 @@ $(document).ready(function(){
    
    
    $('.tabpage').each(function(){
-        if ($(this).find('.time').length ==0) {
+        if ($(this).find('.time').length ===0) {
              $(this).find('.Type').prop('disabled', 'disabled');
         }
     });
     $('form').bind('submit', function() {
         $(this).find('.Type').removeAttr('disabled');
     });
+   
+   //logic for increment final amount hiding
+    $('.incrementSelect').each(function(){
+        if($(this).find(".count").val()==="increments"){
+           $(this).parent().find('.finalAmountVal').attr('disabled', 'disabled').val('');
+           $(this).parent().find(".finalAmountDiv").hide();
+        }
+        else{
+           $(this).parent().find(".incrementalDiv").hide();
+           $(this).parent().find('.incrementVal').attr('disabled', 'disabled').val('');
+        }
+    });
+    
+    
+    $('.count').click(function (){//if they change it after the page loads
+       
+        if($(this).val()==="increments"){
+            $(this).parent().find('.finalAmountVal').attr('disabled', 'disabled').val('');
+            $(this).parent().find('.incrementVal').removeAttr('disabled').val('0');
+            $(this).parent().find('.finalAmountDiv').hide();
+            $(this).parent().find('.incrementalDiv').show();
+        }
+        if($(this).val()==="finalValue"){
+            $(this).parent().find('.incrementVal').attr('disabled', 'disabled').val('');
+            $(this).parent().find('.finalAmountVal').removeAttr('disabled');
+            $(this).parent().find('.incrementalDiv').hide();
+            $(this).parent().find('.finalAmountDiv').show();
+        }
+    
+    });
+   
    
     //logic for Default or Custom setting
     
