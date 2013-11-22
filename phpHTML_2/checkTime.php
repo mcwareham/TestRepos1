@@ -8,14 +8,30 @@
 
 //shared? common?  trying to think of best word!
 function setSharedTimeMPLSessionVars() {
+    $_SESSION['count'] = $_GET['count'];
     $_SESSION['aStart'] = $_GET['aInitial'];
-    $_SESSION['aEnd'] = $_GET['aFinal'];
     $_SESSION['bStart'] = $_GET['bInitial'];
-    $_SESSION['bEnd'] = $_GET['bFinal'];
     $_SESSION['delay'] = $_GET['delay'];
     $_SESSION['units'] = $_GET['units'];
-    $_SESSION['aSegs'] = ($_SESSION['aEnd']- $_SESSION['aStart'])/($_SESSION['numMainQuestions']-1);
-    $_SESSION['bSegs'] = ($_SESSION['bEnd']-$_SESSION['bStart'])/($_SESSION['numMainQuestions']-1);
+    
+    
+    if (isset($_GET['aIncrement'])){//increment mode for a
+        $_SESSION['aSegs']=$_GET['aIncrement'];
+    }
+    else{//not increment mode for a
+        $_SESSION['aEnd'] = $_GET['aFinal'];
+        $_SESSION['aSegs'] = ($_SESSION['aEnd']- $_SESSION['aStart'])/($_SESSION['numMainQuestions']-1);
+    }
+    if (isset($_GET['bIncrement'])){//increment mode for b
+        $_SESSION['bSegs']=$_GET['bIncrement'];
+    }
+    
+    else{
+        $_SESSION['bEnd'] = $_GET['bFinal'];
+        $_SESSION['bSegs'] = ($_SESSION['bEnd']-$_SESSION['bStart'])/($_SESSION['numMainQuestions']-1);
+    }
+    
+    
 }
 
 function setDefaultTimeMPLSessionVars() {
