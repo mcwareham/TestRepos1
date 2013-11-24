@@ -79,7 +79,8 @@ function setCustomTimeMPLSessionVars(){//Set custom variables
        
             
     }
-    
+    echo'Enter a file name, and your Custom Survey will be created.<br>';
+    echo'(NOTE:A preview is not yet available for Custom Survey Mode, but the file will still import into Qualtrics.)';
 }
 
 function printSubmitLogic() {

@@ -67,7 +67,7 @@ function getSurveyString() {
         for($i=1; $i<=$_SESSION['numIter']; $i++){
 
 
-            $string .= '<table border="1" cellpadding="1" cellspacing="1" style="width: 500px; "> <tbody>  <tr>   <td style="width: 64px; text-align: center; ">'.$i.'</td>   <td style="width: 228px; text-align: center; ">$'.round($a1Sum,2).' if die roll is '.$_SESSION['a1Prob'].' <br> $'.round($a2Sum,2).'if die roll is '.$_SESSION['a2Prob'].'</td>   <td style="width: 228px; text-align: center; ">$'.round($b1Sum,2).' if die roll is '.$_SESSION['b1Prob'].' <br>$'.round($b2Sum,2).' if die roll is '.$_SESSION['a2Prob'].'</td>  </tr> </tbody></table>
+            $string .= '<table border="1" cellpadding="1" cellspacing="1" style="width: 500px; "> <tbody>  <tr>   <td style="width: 64px; text-align: center; ">'.$i.'</td>   <td style="width: 228px; text-align: center; ">$'.number_format($a1Sum,2).' if die roll is '.$_SESSION['a1Prob'].' <br> $'.number_format($a2Sum,2).' if die roll is '.$_SESSION['a2Prob'].'</td>   <td style="width: 228px; text-align: center; ">$'.number_format($b1Sum,2).' if die roll is '.$_SESSION['b1Prob'].' <br>$'.number_format($b2Sum,2).' if die roll is '.$_SESSION['a2Prob'].'</td>  </tr> </tbody></table>
             ';
 
 

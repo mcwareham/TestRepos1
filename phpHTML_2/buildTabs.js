@@ -131,16 +131,47 @@ $(document).ready(function(){
 			$a2Prob.attr('disabled', 'disabled').val('');
 			$b1Prob.attr('disabled', 'disabled').val('');
 			$b2Prob.attr('disabled', 'disabled').val('');
+                        
+                        $('#dollar').parent().parent().parent().find(".flexibleProbability").show();
+                        
+                        var tab2Select = $('#dollar').parent().parent().parent().find(".incrementSelect");
+                        tab2Select.each(function(){
+                            $(this).find(".count").hide();
+                            $(this).find(".incrementalDiv").hide();
+                            
+                            $(this).find(".finalAmountDiv").hide();
+                            $(this).find(".constProb").hide();
+                            
+                        });
         }
         else{
-						$constDollarDisplay.hide();
-						$constProbabiltyDisplay.show();
+			$constDollarDisplay.hide();
+			$constProbabiltyDisplay.show();
                         $sides.attr('disabled', 'disabled').val('');
+                        
+                        $('#dollar').parent().parent().parent().find(".flexibleProbability").hide();
+                        
+                        var tab2Select = $('#dollar').parent().parent().parent().find(".incrementSelect");
+                        tab2Select.each(function(){
+                            $(this).find(".count").show();
+                            $(this).find(".incrementalDiv").show();
+                             if($(this).find(".count").val()==="increments"){
+                                    $(this).parent().find('.finalAmountVal').attr('disabled', 'disabled').val('');
+                                    $(this).parent().find(".finalAmountDiv").hide();
+                               }
+                            else{
+                                     $(this).parent().find(".incrementalDiv").hide();
+                                    $(this).parent().find('.incrementVal').attr('disabled', 'disabled').val('');
+                                }
+                            
+                           
+                            
+                        });  
         }
         
 	$('input:radio[name=constant]').click(function (){
-    var constVal = $(this).val();  
-    	if (constVal=='dollar'){
+        var constVal = $(this).val();  
+    	if (constVal==='dollar'){
 			$constDollarDisplay.show();
 			$constProbabiltyDisplay.hide();
 			$A1.attr('disabled', 'disabled').val('');
@@ -153,13 +184,25 @@ $(document).ready(function(){
 			$a2Prob.attr('disabled', 'disabled').val('');
 			$b1Prob.attr('disabled', 'disabled').val('');
 			$b2Prob.attr('disabled', 'disabled').val('');
-
+                        $(this).parent().parent().parent().find(".flexibleProbability").show();
+                        
+                        var tab2Select = $(this).parent().parent().parent().find(".incrementSelect");
+                        tab2Select.each(function(){
+                            $(this).find(".count").hide();
+                            $(this).find(".incrementalDiv").hide();
+                            
+                            $(this).find(".finalAmountDiv").hide();
+                            $(this).find(".constProb").hide();
+                            
+                        });
+                        
+                          
 			
 		}
 		else{
 			$constDollarDisplay.hide();
 			$constProbabiltyDisplay.show();
-
+                        $(this).parent().parent().parent().find(".flexibleProbability").hide();
 			$A1.removeAttr('disabled');
 			 $A2.removeAttr('disabled');
 			$B1.removeAttr('disabled');
@@ -170,7 +213,16 @@ $(document).ready(function(){
 			 $a2Prob.removeAttr('disabled');
 			$b1Prob.removeAttr('disabled');
 			$b2Prob.removeAttr('disabled');
-
+                            
+                        var tab2Select = $(this).parent().parent().parent().find(".incrementSelect");
+                        tab2Select.each(function(){
+                            $(this).find(".count").show();
+                            $(this).find(".incrementalDiv").show();
+                            
+                            $(this).find(".finalAmountDiv").hide();
+                            $(this).find(".constProb").show();
+                            
+                        });    
 			
 		}
   });

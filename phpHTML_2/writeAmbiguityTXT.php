@@ -93,10 +93,9 @@ black
 function writeSurveyStringToFile($fileName, $ext, $string) {
     $file = fopen($fileName.$ext,"w") or die ("Could not write file");
     print_r(error_get_last());
-    //$cssFile = fopen($fileName.'.css',"w") or die ("Could not write file");//We are not using CSS now
     fwrite($file, $string);
     fclose($file);
-    //fclose($cssFile);
+
     
     echo 'Your survey "'.$fileName.'" has been created';
 
@@ -361,7 +360,6 @@ function generateRandomCharString($length) {
 
 session_start();
 date_default_timezone_set('America/Anchorage');
-
 ini_set('display_errors', 1);
 error_reporting(~0);
 writeSurveyStringToFile($_GET['fileName'], '.txt', getDefaultSurveyString($_SESSION['a1Start'], $_SESSION['a1End'],$_SESSION['a2Start'],$_SESSION['a2End'], $_SESSION['b1Start'],$_SESSION['b1End'],$_SESSION['b2Start'],$_SESSION['b2End']));

@@ -9,21 +9,21 @@
 function setDefaultTimeMPLSessionVars() {
     $_SESSION['numIter'] =10;
 
-    $_SESSION['a1Start'] = $_GET['a1Initial'];
-    $_SESSION['a1End'] = $_GET['a1Final'];
-    $_SESSION['a2Start'] = $_GET['a2Initial'];
-    $_SESSION['a2End'] = $_GET['a2Final'];
-    $_SESSION['b1Start'] = $_GET['b1Initial'];
-    $_SESSION['b1End'] = $_GET['b1Final'];
-    $_SESSION['b2Start'] = $_GET['b2Initial'];
-    $_SESSION['b2End'] = $_GET['b2Final'];
+   if(is_numeric($_GET['a1Initial'])) $_SESSION['a1Start'] = $_GET['a1Initial'];
+    if(is_numeric($_GET['a1Final'])) $_SESSION['a1End'] = $_GET['a1Final'];
+    if(is_numeric($_GET['a2Initial'])) $_SESSION['a2Start'] = $_GET['a2Initial'];
+    if(is_numeric($_GET['a2Final'])) $_SESSION['a2End'] = $_GET['a2Final'];
+    if(is_numeric($_GET['b1Initial']))$_SESSION['b1Start'] = $_GET['b1Initial'];
+     if(is_numeric($_GET['b1Final']))$_SESSION['b1End'] = $_GET['b1Final'];
+    if(is_numeric($_GET['b2Initial']))$_SESSION['b2Start'] = $_GET['b2Initial'];
+    if(is_numeric($_GET['b2Final'])) $_SESSION['b2End'] = $_GET['b2Final'];
     
     $_SESSION['a1Segs'] = ($_SESSION['a1End']- $_SESSION['a1Start'])/($_SESSION['numIter']-1);
     $_SESSION['a2Segs'] = ($_SESSION['a2End']- $_SESSION['a2Start'])/($_SESSION['numIter']-1);
     $_SESSION['b1Segs'] = ($_SESSION['b1End']-$_SESSION['b1Start'])/($_SESSION['numIter']-1);
     $_SESSION['b2Segs'] = ($_SESSION['b2End']-$_SESSION['b2Start'])/($_SESSION['numIter']-1);
    
-    
+  /*
     echo'<strong>Urn A contains 10 balls: 5 red and 5 black. 
         <br>Urn B contains 10 balls: some are red, some are black, but the amount of each is unknown. 
         <br>Pick a color to bet on, and keep this choice in mind when making decisions for the next set of questions to follow below:</strong>
@@ -56,7 +56,7 @@ function setDefaultTimeMPLSessionVars() {
 			</td>
 		</tr>
 	</tbody>
-</table>';
+</table>';*/
 
     $a1Sum=$_SESSION['a1Start'];
     $a2Sum=$_SESSION['a2Start'];
@@ -142,13 +142,16 @@ $fh = fopen($myFile, 'w') or die("can't open");*/
 
 $type = $_GET['Type'];
 
+
 if ($type=="default" && isValidTimeMPLParameters()) {    
+   
     setDefaultTimeMPLSessionVars();
 }
 
 if ($type=="custom" /*might need another condition like above*/) {//New 
     setCustomTimeMPLSessionVars();//function sets number of main questions and iterative questions
     //to be made...
+    
 }
 
 if (isValidTimeMPLParameters()) {

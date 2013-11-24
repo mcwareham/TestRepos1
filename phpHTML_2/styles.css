@@ -184,11 +184,13 @@ h2{
 }
 .amountsA1{
 float: left;
-padding-right:20px; 
+padding-right:20px;
+padding-bottom: 30px;
 }
 .amountsA2{
 float: left;
 padding-right:20px; 
+padding-bottom: 30px;
 }
 .surveyMode{
 clear: both;
@@ -205,8 +207,16 @@ position:relative;
     float:left;
 }
 .timeDelay{
+    clear: both;
     float:left;
     margin-bottom:20px;
+}
+
+.timeDelayInput{
+    float:left;
+}
+.submitDiv{
+    float:left;
 }
 /*#iterativeDiv{
     float:right;
@@ -214,6 +224,7 @@ position:relative;
 .optionWrapper{
     width:350px;
 }
+
 
 #numSides{
 float: left;

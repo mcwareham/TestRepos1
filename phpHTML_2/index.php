@@ -30,8 +30,11 @@ function printSurveyMode(){
             <div class="customQuestionDiv">
             Number of Iterative Questions <input type="text" name="numIterativeQuestions" class ="numIterativeQuestions" maxlength="3" style="width: 25px;" value="10"/>
             <br>
+            <div class="errorDiv"></div>
             <br>
             Number of Main Questions <input type="text" name="numMainQuestions" class = "numMainQuestions" maxlength="3"style="width: 25px;" value="10"/>
+            <br>
+            <div class="errorDiv"></div>
             </div>
         </div>
 ';
@@ -48,9 +51,11 @@ function printHeadHTML() {//contains files added: css, js, etc
     <html>
     <head>
     <meta charset="utf-8">
-    <script src="http://code.jquery.com/jquery-1.6.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.7.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
     <script src="acidTabs.js"></script> 
     <script src="buildTabs.js"></script>
+    <script src="formValidation.js"></script>
 
     <title>Individual Choice Experiments</title>
     <link href="styles.css" rel="stylesheet" type="text/css">
@@ -74,8 +79,8 @@ function printTimeTab() {
     echo '
   	<div class="tabpage" id="tabpage_1">
         <div class="time">
-    	<h2>Time</h2>
-    <form action="checkTime.php" method="GET">
+            <h2>Time</h2>
+            <form action="checkTime.php" method="GET" id="timeForm">
         ';
    printSurveyMode();
    printClearFloat();
@@ -92,17 +97,24 @@ function printTimeTab() {
                     </select>
                     <br>
                     <br>
-                    initial amount: <input type="text" name="aInitial"maxlength="9" style="width: 50px;">
+                    initial amount: <input type="text" name="aInitial" class="initalAAmountInput" maxlength="9" style="width: 50px;">
+                    <br>
+                    <div class="errorDiv"></div>
                     <div class ="incrementalDiv">
                         <br>
                         $ increments: <input type="text" name="aIncrement" class="incrementVal"value="0" maxlength="9" style="width: 50px;">
+                        <br>
+                        <div class="errorDiv"></div>
                     </div>
                     <div class="finalAmountDiv">
                         <br>
                         final amount: <input type="text" name="aFinal" class="finalAmountVal" maxlength="9" style="width: 50px;">
+                        <br>
+                        <div class="errorDiv"></div>
                     </div>
+                    <div style="clear: both;"></div>
               </div>
-            </div>
+              </div>
             <div class="amountsB1">
                 <br>
                 <h3>Option B</h3>
@@ -114,14 +126,21 @@ function printTimeTab() {
                     </select>
                     <br>
                     <br>
-                    initial amount: <input type="text" name="bInitial"maxlength="9" style="width: 50px;">
+                    initial amount: <input type="text" name="bInitial"maxlength="9" class="initalBAmountInput" style="width: 50px;">
+                    <br>
+                    <div class="errorDiv"></div>
                     <div class ="incrementalDiv">
                         <br>
                         $ increments: <input type="text" name="bIncrement" class="incrementVal"value="0" maxlength="9" style="width: 50px;">
+                        <br>
+                        <div class="errorDiv"></div>
                     </div>
                     <div class="finalAmountDiv">
                         <br>
                         final amount: <input type="text" name="bFinal" class="finalAmountVal" maxlength="9" style="width: 50px;">
+                        <br>
+                        <div class="errorDiv"></div>
+                        
                     </div>
                 </div>
             </div>
@@ -129,14 +148,21 @@ function printTimeTab() {
                 <br>
                 <h3>Time Delay</h3>
                 <br>
-                time delay: <input type="text" name="delay">
-                <select name="units">
+                <div class="timeDislayDiv">
+                <div class="timeDelayInput">
+                    time delay: <input type="text" name="delay">
+                    <br>
+                    <div class="errorDiv"></div>
+                </div>
+                
+                <select name="units" class="units">
                     <option value="days">days</option>
                     <option value="weeks">weeks</option>
                     <option value="months">months</option>
                     <option value="years">years</years>
                 </select>
-              </div>
+                </div>
+            </div>
               </div>
             </div>
             ';
@@ -170,7 +196,7 @@ function printTimeTab() {
                 <td>16<b>[B Final]</b></td></tr>
            </table>
         </div>
-    </div>
+    
     </div>'
     ;
 }
@@ -192,57 +218,154 @@ function printRiskTab() {
         <div class="amountsA1">
             <br>
             <h3>Option A1</h3>
-            <br>
-            initial amount: <input type="text" name="a1Initial">
-            <br>
-            <br>
-            final amount: <input type="text" name="a1Final" id = "a1Final">
-            <br>
-            <br>
-            die roll (constant) <input type="text" placeholder="1-6" name = "a1Prob" id = "a1Prob">
+            
+               <div class="incrementSelect">
+                    <select name="count" class="count">
+                        <option value="increments"selected="selected">$ Increments</option>
+                        <option value="finalValue">Starting & Ending</option>
+                    </select>
+                    <br>
+                    <br>
+                    initial amount: <input type="text" name="a1Initial"maxlength="9" class="initalA1AmountInput"style="width: 50px;">
+                    <br>
+                    <div class="errorDiv"></div>
+                    <div class ="incrementalDiv">
+                        <br>
+                        $ increments: <input type="text" name="a1Increment" class="incrementVal"value="0" maxlength="9" style="width: 50px;">
+                        <br>
+                        <div class="errorDiv"></div>
+                    </div>
+                    <div class="finalAmountDiv">
+                        <br>
+                        final amount: <input type="text" name="a1Final" class="finalAmountVal" maxlength="9" style="width: 50px;">
+                        <br>
+                        <div class="errorDiv"></div>
+                    </div>
+                    <div class="constProb">
+                        <br>
+                        die roll (constant) <input type="text" placeholder="1-6" name = "a1Prob" id = "a1Prob"> 
+                        <br>
+                        <div class="errorDiv"></div>
+                    </div>
+                    
+              </div>
         </div>
         <div class="amountsB1">
             <br>
             <h3>Option B1</h3>
-            <br>
-            initial amount: <input type="text" name="b1Initial">
-            <br>
-            <br>
-            final amount: <input type="text" name="b1Final" id ="b1Final">
-            <br>
-            <br>
-            die roll (constant) <input type="text" placeholder="1-6" name = "b1Prob" id = "b1Prob">		
+            <div class="incrementSelect">
+                    <select name="count" class="count">
+                        <option value="increments"selected="selected">$ Increments</option>
+                        <option value="finalValue">Starting & Ending</option>
+                    </select>
+                    <br>
+                    <br>
+                    initial amount: <input type="text" name="b1Initial"maxlength="9" class="initalB1AmountInput"style="width: 50px;">
+                    <br>
+                    <div class="errorDiv"></div>
+                    <div class ="incrementalDiv">
+                        <br>
+                        $ increments: <input type="text" name="b1Increment" class="incrementVal"value="0" maxlength="9" style="width: 50px;">
+                        <br>
+                        <div class="errorDiv"></div>
+                    </div>
+                    <div class="finalAmountDiv">
+                        <br>
+                        final amount: <input type="text" name="b1Final" class="finalAmountVal" maxlength="9" style="width: 50px;">
+                        <br>
+                        <div class="errorDiv"></div>
+                    </div>
+                    <div class="constProb">
+                        <br>
+    
+                        die roll (constant) <input type="text" placeholder="1-6" name = "b1Prob" id = "b1Prob">
+                        <br>
+                        <div class="errorDiv"></div>
+                    </div>
+                    
+              </div>
         </div>
-		<div class="amountsA2" id = "A2">
+        <div style="clear: both;"></div>
+        <div class="amountsA2" id = "A2">
             <br>
             <h3>Option A2</h3>
-            <br>
-            initial amount: <input type="text" name="a2Initial">
-            <br>
-            <br>
-            final amount: <input type="text" name="a2Final" id ="a2Final">
-            <br>
-            <br>
-            die roll (constant) <input type="text" placeholder="1-6" name = "a2Prob" id = "a2Prob">
+            <div class="incrementSelect">
+                    <select name="count" class="count">
+                        <option value="increments"selected="selected">$ Increments</option>
+                        <option value="finalValue">Starting & Ending</option>
+                    </select>
+                    <br>
+                    <br>
+                    initial amount: <input type="text" name="a2Initial"maxlength="9" class="initalA2AmountInput" style="width: 50px;">
+                    <br>
+                    <div class="errorDiv"></div>
+                    <div class ="incrementalDiv">
+                        <br>
+                        $ increments: <input type="text" name="a2Increment" class="incrementVal"value="0" maxlength="9" style="width: 50px;">
+                        <br>
+                        <div class="errorDiv"></div>
+                    </div>
+                    <div class="finalAmountDiv">
+                        <br>
+                        final amount: <input type="text" name="a2Final" class="finalAmountVal" maxlength="9" style="width: 50px;">
+                        <br>
+                        <div class="errorDiv"></div>
+                    </div>
+                    <div class="constProb">
+                        <br>
+    
+                        die roll (constant) <input type="text" placeholder="1-6" name = "a2Prob" id = "a2Prob">
+                        <br>
+                        <div class="errorDiv"></div>
+                    </div>
+              </div>
         </div>
         <div class="amountsB2" id= "B2">
             <br>
             <h3>Option B2</h3>
-            <br>
-            initial amount: <input type="text" name="b2Initial">
-            <br>
-            <br>
-            final amount: <input type="text" name="b2Final" id="b2Final">
-            <br>
-            <br>
-            die roll (constant) <input type="text" placeholder="1-6" name = "b2Prob" id = "b2Prob">		
+            <div class="incrementSelect">
+                    <select name="count" class="count">
+                        <option value="increments"selected="selected">$ Increments</option>
+                        <option value="finalValue">Starting & Ending</option>
+                    </select>
+                    <br>
+                    <br>
+                    initial amount: <input type="text" name="b2Initial"maxlength="9" class = "initalb2AmountInput"style="width: 50px;">
+                    <br>
+                    <div class="errorDiv"></div>
+                    <div class ="incrementalDiv">
+                        <br>
+                        $ increments: <input type="text" name="b2Increment" class="incrementVal"value="0" maxlength="9" style="width: 50px;">
+                        <br>
+                        <div class="errorDiv"></div>
+                    </div>
+                    <div class="finalAmountDiv">
+                        <br>
+                        final amount: <input type="text" name="b2Final" class="finalAmountVal" maxlength="9" style="width: 50px;">
+                        <br>
+                        <div class="errorDiv"></div>
+                    </div>
+                    <div class="constProb">
+                        <br>
+    
+                        die roll (constant) <input type="text" placeholder="1-6" name = "b2Prob" id = "b2Prob">
+                        <br>
+                        <div class="errorDiv"></div>
+                    </div>
+              </div>	
         </div>
         <br>
-        <h3> Flexible Probability</h3>
-        <br>
-        <div id="numSides">
-            Number of Dice sides: <input type="text" name="sides" id="sides">
+        <div style="clear: both;"></div>
+        <div class="flexibleProbability">
+            <h3> Flexible Probability</h3>
+            <br>
+            <div id="numSides">
+                Number of Dice sides: <input type="text" name="sides" id="sides">
+                <br>
+                <div class="errorDiv"></div>
+            </div>
         </div>
+        <div style="clear: both;"></div>
         <div id="submit">
             <input type="submit">
         </div>
@@ -390,8 +513,12 @@ function printTimeAndRiskTab() {
             <br>
             current amount: <input type="text" name="a1Initial">
             <br>
+            <div class="errorDiv"></div>
+            <br>
             <br>
             delayed amount: <input type="text" name="a1Final">
+            <br>
+            <div class="errorDiv"></div>
 
         </div>
         <div class="amountsB1">
@@ -399,17 +526,26 @@ function printTimeAndRiskTab() {
             <br>
             current amount: <input type="text" name="b1Initial">
             <br>
+            <div class="errorDiv"></div>
             <br>
-            delayed amount: <input type="text" name="b1Final">	
+            <br>
+            delayed amount: <input type="text" name="b1Final">
+            <br>
+            <div class="errorDiv"></div>
         </div>
+        <div style="clear: both;"></div>
 	<div class="amountsA2" id = "A2">
             <br>
             <h3>Option A2</h3>
             <br>
             current amount: <input type="text" name="a2Initial">
             <br>
+            <div class="errorDiv"></div>
+            <br>
             <br>
             delayed amount: <input type="text" name="a2Final">
+            <br>
+            <div class="errorDiv"></div>
         </div>
         <div class="amountsB2" id= "B2">
             <br>
@@ -417,29 +553,47 @@ function printTimeAndRiskTab() {
             <br>
             current amount: <input type="text" name="b2Initial">
             <br>
+            <div class="errorDiv"></div>
+            <br>
             <br>
             delayed amount: <input type="text" name="b2Final">
+            <br>
+            <div class="errorDiv"></div>
         </div>
+        <div style="clear: both;"></div>
         <br>
         <h3> Probability and Delay </h3>
         <br>
-        <div id="numSides">
-            Number of Dice sides: <input type="text" name="sides">
+         Number of Dice sides: <input type="text" name="sides">
+                        <br>
+                        <div class="errorDiv"></div>
 			<br>
 			<br>
-			time delay: <input type="text" name="delay">
-        <select name="units">
+        <div class="timeDelay">
+                <div class="timeDislayDiv">
+                <div class="timeDelayInput">
+                    time delay: <input type="text" name="delay">
+                    <br>
+                    <div class="errorDiv"></div>
+                </div>
+                
+                <select name="units" class="units">
                     <option value="days">days</option>
                     <option value="weeks">weeks</option>
                     <option value="months">months</option>
                     <option value="years">years</years>
                 </select>
-                <br>
-                <br>
-                <div id="submit">
-                <input type="submit">
                 </div>
-        </div>
+                
+         </div>  
+         <div style="clear: both;"></div>
+         <div class="submitDiv">
+         <input type="submit">
+         </div>
+           
+        
+                
+        
     </form>
     
         <div id=exampleRiskAndTime>
@@ -572,6 +726,7 @@ function printAmbiguityTab() {
             <br>
             Ending amount: <input type="text" name="b1Final">	
         </div>
+        <div style="clear: both;"></div>
 	<div class="amountsA2" id = "A2">
             <br>
             <h3>Option A (Lose)</h3>
