@@ -6,8 +6,8 @@
 //DEFINE FUNCTIONS FIRST
 //
 
-function setDefaultTimeMPLSessionVars() {
-    $_SESSION['numIter'] =10;
+function setDefaultAmbiguityMPLSessionVars() {
+    $_SESSION['numMainQuestions'] =10;
 
    if(is_numeric($_GET['a1Initial'])) $_SESSION['a1Start'] = $_GET['a1Initial'];
     if(is_numeric($_GET['a1Final'])) $_SESSION['a1End'] = $_GET['a1Final'];
@@ -18,10 +18,10 @@ function setDefaultTimeMPLSessionVars() {
     if(is_numeric($_GET['b2Initial']))$_SESSION['b2Start'] = $_GET['b2Initial'];
     if(is_numeric($_GET['b2Final'])) $_SESSION['b2End'] = $_GET['b2Final'];
     
-    $_SESSION['a1Segs'] = ($_SESSION['a1End']- $_SESSION['a1Start'])/($_SESSION['numIter']-1);
-    $_SESSION['a2Segs'] = ($_SESSION['a2End']- $_SESSION['a2Start'])/($_SESSION['numIter']-1);
-    $_SESSION['b1Segs'] = ($_SESSION['b1End']-$_SESSION['b1Start'])/($_SESSION['numIter']-1);
-    $_SESSION['b2Segs'] = ($_SESSION['b2End']-$_SESSION['b2Start'])/($_SESSION['numIter']-1);
+    $_SESSION['a1Segs'] = ($_SESSION['a1End']- $_SESSION['a1Start'])/($_SESSION['numMainQuestions']-1);
+    $_SESSION['a2Segs'] = ($_SESSION['a2End']- $_SESSION['a2Start'])/($_SESSION['numMainQuestions']-1);
+    $_SESSION['b1Segs'] = ($_SESSION['b1End']-$_SESSION['b1Start'])/($_SESSION['numMainQuestions']-1);
+    $_SESSION['b2Segs'] = ($_SESSION['b2End']-$_SESSION['b2Start'])/($_SESSION['numMainQuestions']-1);
    
   /*
     echo'<strong>Urn A contains 10 balls: 5 red and 5 black. 
@@ -62,7 +62,7 @@ function setDefaultTimeMPLSessionVars() {
     $a2Sum=$_SESSION['a2Start'];
     $b1Sum=$_SESSION['b1Start'];
     $b2Sum=$_SESSION['b2Start'];
-    for($i=1; $i<=$_SESSION['numIter']; $i++) {
+    for($i=1; $i<=$_SESSION['numMainQuestions']; $i++) {
         echo'<table border="1" cellpadding="1" cellspacing="1" style="width: 535px; "> 
                 <tbody>  
                     <tr>   
@@ -82,7 +82,7 @@ function setDefaultTimeMPLSessionVars() {
                                 <tbody>     
                                 <tr>      
                                 <td style="text-align: center; width: 94px;">$'. round($b1Sum,2).'</td>      
-                                <td style="text-align: center;">$'. round($b1Sum,2).'</td>     
+                                <td style="text-align: center;">$'. round($b2Sum,2).'</td>     
                                 </tr>    
                                 </tbody>   
                             </table>   
@@ -101,7 +101,7 @@ function setDefaultTimeMPLSessionVars() {
    
 }
 
-function setCustomTimeMPLSessionVars(){//Set custom variables
+function setCustomAmbiguityMPLSessionVars(){//Set custom variables
     if(isset($_GET['iterative'])){//it's iterative
        $_SESSION['isIterative']='true';
        $_SESSION['numIterativeQuestions']= $_GET['numIterativeQuestions'];//set number of iterative questions
@@ -110,7 +110,7 @@ function setCustomTimeMPLSessionVars(){//Set custom variables
        $_SESSION['isIterative']='false';
        $_SESSION['numIterativeQuestions']=0;
     }
-    $_SESSION['numIter']= $_GET['numMainQuestions'];//this sets the custom number of questions
+    
 }
 
 function printSubmitLogic() {
@@ -118,12 +118,6 @@ function printSubmitLogic() {
     echo'File Name: <input type="text" name="fileName">';
     echo'<input type="submit">';
     echo'</form>';
-}
-
-function isValidTimeMPLParameters() {
-    //validation stub---this will likely call some JavaScript code
-    //we'll see
-    return true;
 }
 
 
@@ -141,25 +135,23 @@ $fh = fopen($myFile, 'w') or die("can't open");*/
 //print_r(error_get_last());
 
 $type = $_GET['Type'];
+$_SESSION['isTest'] = false;
 
 
-if ($type=="default" && isValidTimeMPLParameters()) {    
+if ($type=="default") {    
    
-    setDefaultTimeMPLSessionVars();
+    setDefaultAmbiguityMPLSessionVars();
 }
 
 if ($type=="custom" /*might need another condition like above*/) {//New 
-    setCustomTimeMPLSessionVars();//function sets number of main questions and iterative questions
+    setCustomAmbiguityMPLSessionVars();//function sets number of main questions and iterative questions
     //to be made...
     
 }
 
-if (isValidTimeMPLParameters()) {
-    /* idea would be to not allow a submission until valid, but we might remove
-     * the if test and do all this in JS as mentioned previously     * 
-     */
-    printSubmitLogic();
-}
+   
+printSubmitLogic();
+
 
 
 ?>

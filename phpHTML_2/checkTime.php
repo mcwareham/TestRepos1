@@ -111,6 +111,7 @@ $fh = fopen($myFile, 'w') or die("can't open");*/
 //print_r(error_get_last());
 
 $_SESSION['type'] = $_GET['Type'];
+$_SESSION['isTest'] = false;
  
 
 if ($_SESSION['type'] == "default" && isValidTimeMPLParameters()) {    

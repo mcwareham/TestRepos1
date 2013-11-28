@@ -8,7 +8,7 @@
 //
 
 
-function getSurveyString() {
+function build_RiskMPL_BasicSurvey() {
     $string = '[[AdvancedFormat]]
 
 
@@ -35,7 +35,7 @@ function getSurveyString() {
     if($_SESSION['constant']=='dollar'){
 
 
-        for($i=1; $i<=$_SESSION['numIter']; $i++){
+        for($i=1; $i<=$_SESSION['numMainQuestions']; $i++){
             if($i==1){//die roll is  'one'
                 $string .= '<table border="1" cellpadding="1" cellspacing="1" style="width: 500px; "> <tbody>  <tr>   <td style="width: 64px; text-align: center; ">'.$i.'</td>   <td style="width: 228px; text-align: center; ">$'.$_SESSION['a1'].' if die roll is one <br> $'.$_SESSION['a2'].' if die roll is 2-'.$_SESSION['sides'].'</td>   <td style="width: 228px; text-align: center; ">$'.$_SESSION['b1'].' if die roll is one <br>$'.$_SESSION['b2'].' if die roll is 2-'.$_SESSION['sides'].'</td>  </tr> </tbody></table>
                 ';
@@ -64,7 +64,7 @@ function getSurveyString() {
         $b1Sum=$_SESSION['b1Start'];
         $b2Sum=$_SESSION['b2Start'];
 
-        for($i=1; $i<=$_SESSION['numIter']; $i++){
+        for($i=1; $i<=$_SESSION['numMainQuestions']; $i++){
 
 
             $string .= '<table border="1" cellpadding="1" cellspacing="1" style="width: 500px; "> <tbody>  <tr>   <td style="width: 64px; text-align: center; ">'.$i.'</td>   <td style="width: 228px; text-align: center; ">$'.number_format($a1Sum,2).' if die roll is '.$_SESSION['a1Prob'].' <br> $'.number_format($a2Sum,2).' if die roll is '.$_SESSION['a2Prob'].'</td>   <td style="width: 228px; text-align: center; ">$'.number_format($b1Sum,2).' if die roll is '.$_SESSION['b1Prob'].' <br>$'.number_format($b2Sum,2).' if die roll is '.$_SESSION['a2Prob'].'</td>  </tr> </tbody></table>
@@ -93,34 +93,31 @@ function getSurveyString() {
     return $string;
 }
 
-function writeSurveyStringToFile($fileName, $string) {
-    $file = fopen($fileName.'.txt',"w") or die ("Could not write file");
-    print_r(error_get_last());
-    //$cssFile = fopen($fileName.'.css',"w") or die ("Could not write file");//We are not using CSS now
-    fwrite($file, $string);
-    fclose($file);
-    //fclose($cssFile);
-    
-    echo 'Your survey "'.$fileName.'" has been created';
-
-    header("Content-disposition: attachment; filename=".$fileName.".txt");
-    header("Content-type: text/plain");
-    ob_clean();
-    readfile($fileName.".txt");
-    //exit;
-}
-
 
 //
 //EXECUTE RELEVANT LOGIC FOR THIS PAGE
 //
 
+if (session_status() != PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
-session_start();
-ini_set('display_errors', 1);
-error_reporting(~0);
-writeSurveyStringToFile($_GET['fileName'], getSurveyString());
-exit;
+
+
+if ($_SESSION['isTest']) {
+    /* 
+     * Do nothing; this "halts" the code so that we can call functions from the
+     * the test file after including this file---in other words, it keeps this 
+     * file from running the code below (in the else clause)
+     */
+} else {
+    ini_set('display_errors', 1);
+    error_reporting(~0);
+    include_once 'writeSurveyStringToFile.php';
+   
+    writeSurveyStringToFile($_GET['fileName'], '.txt', build_RiskMPL_BasicSurvey());
+    exit;
+}
 
 ?>
 

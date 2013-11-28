@@ -25,10 +25,10 @@ function setSessionProbabilityAndDollar(){
     $_SESSION['b2Start'] = $_GET['b2Initial'];
     $_SESSION['b2End'] = $_GET['b2Final'];
 
-    $_SESSION['a1Segs'] = ($_SESSION['a1End']- $_SESSION['a1Start'])/($_SESSION['numIter']-1);
-    $_SESSION['a2Segs'] = ($_SESSION['a2End']- $_SESSION['a2Start'])/($_SESSION['numIter']-1);
-    $_SESSION['b1Segs'] = ($_SESSION['b1End']-$_SESSION['b1Start'])/($_SESSION['numIter']-1);
-    $_SESSION['b2Segs'] = ($_SESSION['b2End']-$_SESSION['b2Start'])/($_SESSION['numIter']-1);
+    $_SESSION['a1Segs'] = ($_SESSION['a1End']- $_SESSION['a1Start'])/($_SESSION['numMainQuestions']-1);
+    $_SESSION['a2Segs'] = ($_SESSION['a2End']- $_SESSION['a2Start'])/($_SESSION['numMainQuestions']-1);
+    $_SESSION['b1Segs'] = ($_SESSION['b1End']-$_SESSION['b1Start'])/($_SESSION['numMainQuestions']-1);
+    $_SESSION['b2Segs'] = ($_SESSION['b2End']-$_SESSION['b2Start'])/($_SESSION['numMainQuestions']-1);
     
 }
 
@@ -55,7 +55,7 @@ function printSubmitForm() {
 
 function printRiskAndDollarTable() {
 
-    for($i=1; $i<=$_SESSION['numIter']; $i++){
+    for($i=1; $i<=$_SESSION['numMainQuestions']; $i++){
         echo'<tr>';
         echo'<td>'.$i.'</td>';
         if($i==1){
@@ -100,8 +100,10 @@ function printRiskAndDollarTable() {
 
 session_start();//Start session to save variables
 $type = $_GET['Type'];
+$_SESSION['isTest'] = false;
+
 if ($type=="default"){//is default number of iterations =10
-    $_SESSION['numIter'] =10;
+    $_SESSION['numMainQuestions'] =10;
 }//close if default
 
 setSessionProbabilityAndDollar();
