@@ -1,0 +1,40 @@
+[[AdvancedFormat]]
+
+
+
+[[Question:Matrix]]
+    <strong>For each decision row choose select your preferred Option. The amounts are in dollars.</strong><br />
+    &nbsp;
+    <table border="1" cellpadding="1" cellspacing="1" style="width: 500px; ">
+        <tbody>
+            <tr>
+                <td style="width: 40px; text-align: center; "><strong>Decision</strong></td>
+                <td style="width: 230px; text-align: center; "><strong>Option A</strong></td>
+                <td style="width: 230px; text-align: center; "><strong>Option B</strong></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+[[Choices]]
+
+    <table border="1" cellpadding="1" cellspacing="1" style="width: 500px; "> <tbody>  <tr>   <td style="width: 64px; text-align: center; ">1</td>   <td style="width: 228px; text-align: center; ">$1,000.00 if die roll is one <br> $500.00 if die roll is 2-20</td>   <td style="width: 228px; text-align: center; ">$200.00 if die roll is one-50 <br>$200.00 if die roll is 2-20</td>  </tr> </tbody></table>
+            <table border="1" cellpadding="1" cellspacing="1" style="width: 500px; "> <tbody>  <tr>   <td style="width: 64px; text-align: center; ">2</td>   <td style="width: 228px; text-align: center; ">$2,000.00 if die roll is one <br> $450.00 if die roll is 2-20</td>   <td style="width: 228px; text-align: center; ">$1,000.00 if die roll is one-50 <br>$200.00 if die roll is 2-20</td>  </tr> </tbody></table>
+            <table border="1" cellpadding="1" cellspacing="1" style="width: 500px; "> <tbody>  <tr>   <td style="width: 64px; text-align: center; ">3</td>   <td style="width: 228px; text-align: center; ">$3,000.00 if die roll is one <br> $400.00 if die roll is 2-20</td>   <td style="width: 228px; text-align: center; ">$1,800.00 if die roll is one-50 <br>$200.00 if die roll is 2-20</td>  </tr> </tbody></table>
+            <table border="1" cellpadding="1" cellspacing="1" style="width: 500px; "> <tbody>  <tr>   <td style="width: 64px; text-align: center; ">4</td>   <td style="width: 228px; text-align: center; ">$4,000.00 if die roll is one <br> $350.00 if die roll is 2-20</td>   <td style="width: 228px; text-align: center; ">$2,600.00 if die roll is one-50 <br>$200.00 if die roll is 2-20</td>  </tr> </tbody></table>
+            <table border="1" cellpadding="1" cellspacing="1" style="width: 500px; "> <tbody>  <tr>   <td style="width: 64px; text-align: center; ">5</td>   <td style="width: 228px; text-align: center; ">$5,000.00 if die roll is one <br> $300.00 if die roll is 2-20</td>   <td style="width: 228px; text-align: center; ">$3,400.00 if die roll is one-50 <br>$200.00 if die roll is 2-20</td>  </tr> </tbody></table>
+            <table border="1" cellpadding="1" cellspacing="1" style="width: 500px; "> <tbody>  <tr>   <td style="width: 64px; text-align: center; ">6</td>   <td style="width: 228px; text-align: center; ">$6,000.00 if die roll is one <br> $250.00 if die roll is 2-20</td>   <td style="width: 228px; text-align: center; ">$4,200.00 if die roll is one-50 <br>$200.00 if die roll is 2-20</td>  </tr> </tbody></table>
+            <table border="1" cellpadding="1" cellspacing="1" style="width: 500px; "> <tbody>  <tr>   <td style="width: 64px; text-align: center; ">7</td>   <td style="width: 228px; text-align: center; ">$7,000.00 if die roll is one <br> $200.00 if die roll is 2-20</td>   <td style="width: 228px; text-align: center; ">$5,000.00 if die roll is one-50 <br>$200.00 if die roll is 2-20</td>  </tr> </tbody></table>
+            <table border="1" cellpadding="1" cellspacing="1" style="width: 500px; "> <tbody>  <tr>   <td style="width: 64px; text-align: center; ">8</td>   <td style="width: 228px; text-align: center; ">$8,000.00 if die roll is one <br> $150.00 if die roll is 2-20</td>   <td style="width: 228px; text-align: center; ">$5,800.00 if die roll is one-50 <br>$200.00 if die roll is 2-20</td>  </tr> </tbody></table>
+            <table border="1" cellpadding="1" cellspacing="1" style="width: 500px; "> <tbody>  <tr>   <td style="width: 64px; text-align: center; ">9</td>   <td style="width: 228px; text-align: center; ">$9,000.00 if die roll is one <br> $100.00 if die roll is 2-20</td>   <td style="width: 228px; text-align: center; ">$6,600.00 if die roll is one-50 <br>$200.00 if die roll is 2-20</td>  </tr> </tbody></table>
+            <table border="1" cellpadding="1" cellspacing="1" style="width: 500px; "> <tbody>  <tr>   <td style="width: 64px; text-align: center; ">10</td>   <td style="width: 228px; text-align: center; ">$10,000.00 if die roll is one <br> $50.00 if die roll is 2-20</td>   <td style="width: 228px; text-align: center; ">$7,400.00 if die roll is one-50 <br>$200.00 if die roll is 2-20</td>  </tr> </tbody></table>
+            
+
+
+[[AdvancedAnswers]]
+
+[[Answer]]
+    <strong>A</strong>
+[[Answer]]
+    <strong>B</strong>

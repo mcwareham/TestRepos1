@@ -21,7 +21,7 @@ function setSessionProbability(){
     }
     else{//not increment mode for a1
         $_SESSION['a1End'] = $_GET['a1Final'];
-        $_SESSION['a1Segs'] = ($_SESSION['a1End']- $_SESSION['a1Start'])/($_SESSION['numIter']-1);
+        $_SESSION['a1Segs'] = ($_SESSION['a1End']- $_SESSION['a1Start'])/($_SESSION['numMainQuestions']-1);
     }
     $_SESSION['a1Prob']=$_GET['a1Prob'];
     
@@ -31,7 +31,7 @@ function setSessionProbability(){
     }
     else{//not increment mode for a2
         $_SESSION['a2End'] = $_GET['a2Final'];
-        $_SESSION['a2Segs'] = ($_SESSION['a2End']- $_SESSION['a2Start'])/($_SESSION['numIter']-1);
+        $_SESSION['a2Segs'] = ($_SESSION['a2End']- $_SESSION['a2Start'])/($_SESSION['numMainQuestions']-1);
     }
     $_SESSION['a2Prob']=$_GET['a2Prob'];
     
@@ -41,7 +41,7 @@ function setSessionProbability(){
     }
     else{//not increment mode for b1
         $_SESSION['b1End'] = $_GET['b1Final'];
-        $_SESSION['b1Segs'] = ($_SESSION['b1End']- $_SESSION['b1Start'])/($_SESSION['numIter']-1);
+        $_SESSION['b1Segs'] = ($_SESSION['b1End']- $_SESSION['b1Start'])/($_SESSION['numMainQuestions']-1);
     }
     $_SESSION['b1Prob']=$_GET['b1Prob'];
     
@@ -51,7 +51,7 @@ function setSessionProbability(){
     }
     else{//not increment mode for b1
         $_SESSION['b2End'] = $_GET['b2Final'];
-        $_SESSION['b2Segs'] = ($_SESSION['b2End']- $_SESSION['b2Start'])/($_SESSION['numIter']-1);
+        $_SESSION['b2Segs'] = ($_SESSION['b2End']- $_SESSION['b2Start'])/($_SESSION['numMainQuestions']-1);
     }
     $_SESSION['b2Prob']=$_GET['b2Prob'];
     
@@ -80,7 +80,7 @@ function printSubmitForm() {
 }
 
 function printConstantDollarTable() {
-    for($i=1; $i<=$_SESSION['numIter']; $i++){
+    for($i=1; $i<=$_SESSION['numMainQuestions']; $i++){
         echo'<tr>';
         echo'<td>'.$i.'</td>';
         if($i==1){
@@ -121,7 +121,7 @@ function printConstantProbabilityTable() {
     $b1Sum=$_SESSION['b1Start'];
     $b2Sum=$_SESSION['b2Start'];
     
-    for($i=1; $i<=$_SESSION['numIter']; $i++){
+    for($i=1; $i<=$_SESSION['numMainQuestions']; $i++){
         echo'<tr>';
         echo'<td>'.$i.'</td>';
         echo'<td>$' . number_format($a1Sum,2).' if die roll is '.$_SESSION['a1Prob'].'<br>';
@@ -153,8 +153,10 @@ function deleteTxtFiles(){
 session_start();//Start session to save variables
 $type = $_GET['Type'];
 $_SESSION['constant']=$_GET['constant'];
+$_SESSION['isTest'] = false;
+
 if ($type=="default"){//is default number of iterations =10
-    $_SESSION['numIter'] =10;
+    $_SESSION['numMainQuestions'] =10;
 }//close if default
 
 printTableHead();

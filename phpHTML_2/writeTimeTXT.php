@@ -55,7 +55,8 @@ function build_TimeMPL_BasicSurvey($aStart, $bStart) {
     return $string;
 }
 
-function writeSurveyStringToFile($fileName, $ext, $string) {
+/*
+function writeSurveyStringToFile($fileName, $ext, $string) {    
     $file = fopen($fileName.$ext,"w") or die ("Could not write file");
     print_r(error_get_last());
     //$cssFile = fopen($fileName.'.css',"w") or die ("Could not write file");//We are not using CSS now
@@ -63,14 +64,19 @@ function writeSurveyStringToFile($fileName, $ext, $string) {
     fclose($file);
     //fclose($cssFile);
     
-    echo 'Your survey "'.$fileName.'" has been created';
+    if (!($_SESSION['isTest'])) {
+        header("Content-disposition: attachment; filename=".$fileName.$ext);
+        header("Content-type: text/plain");
+        header("Connection: keep-alive");
+        
+        echo 'Your survey "'.$fileName.'" has been created';
 
-    header("Content-disposition: attachment; filename=".$fileName.$ext);
-    header("Content-type: text/plain");
-    ob_clean();
-    readfile($fileName.$ext);
-    //exit;
-}
+        
+        ob_clean();
+        readfile($fileName.$ext);
+        //exit;
+    }
+}*/
 
 
 function build_TimeMPL_IterativeSurvey($surveyName, $surveyDescription, $surveyBrandID, $currentTime, $totalDecisionsInMainQuestion, $totalDecisionsInSubQuestions, $aStart, $bStart, $aIncrement, $bIncrement) {
@@ -331,50 +337,64 @@ function generateRandomCharString($length) {
 //EXECUTE RELEVANT LOGIC FOR THIS PAGE
 //
 
-
-session_start();
-date_default_timezone_set('America/Anchorage');
-
-ini_set('display_errors', 1);
-error_reporting(~0);
-
-/*
- * Notice: default (with 10 main questions) vs. "custom" with just the main
- * question count different than 10, both use the exact same method 
- * call to create a survey.  So I changed the method name to build_TimeMPL_Basic
- * for now.  Also, during refactoring at a later point, it might make sense to
- * either go one of two ways: pass the parameters like I did with the 
- * build_TimeMPL_IterativeSurvey (even though they're global $SESSION, or simply 
- * use the fact that the $_SESSION variables are already defined, as you had 
- * with the build_TimeMPL_BasicSurvey---we'll see, low priority right now!
- */
-
-if ($_SESSION['isIterative'] == 'true') {
-    writeSurveyStringToFile($_GET['fileName'], '.qsf', build_TimeMPL_IterativeSurvey($_GET['fileName'], getSurveyDescription(), getSurveyBrandID(), getCurrentTime(), $_SESSION['numMainQuestions'], $_SESSION['numIterativeQuestions'], $_SESSION['aStart'], $_SESSION['bStart'], $_SESSION['aSegs'], $_SESSION['bSegs']));
-} else {
-    writeSurveyStringToFile($_GET['fileName'], '.txt', build_TimeMPL_BasicSurvey($_SESSION['aStart'], $_SESSION['bStart']));
+if (session_status() != PHP_SESSION_ACTIVE) {
+    session_start();
 }
 
-/*
- * Below if chain was original logic, but the above if chain results in the same 
- * thing with less repetition, at the expense of it maybe being a tiny bit less
- * clear...maybe.
- */
+date_default_timezone_set('America/Anchorage');
 
-//Left this as it goes with the above comment and also just in case...eventually can delete though.
-/*
-if ($_SESSION['type'] == 'default') {
-    writeSurveyStringToFile($_GET['fileName'], '.txt', build_TimeMPL_BasicSurvey($_SESSION['aStart'], $_SESSION['bStart']));
-} elseif ($_SESSION['type'] == 'custom') { //elseif might be unnecessary, it doesn't matter much though right now at last...
-    if ($_SESSION['isIterative'] == 'true') {               
+
+
+if ($_SESSION['isTest']) {
+    /* 
+     * Do nothing; this "halts" the code so that we can call functions from the
+     * the test file after including this file---in other words, it keeps this 
+     * file from running the code below (in the else clause)
+     */
+} else {
+    
+    ini_set('display_errors', 1);
+    error_reporting(~0);
+    include_once 'writeSurveyStringToFile.php';
+    /*
+     * Notice: default (with 10 main questions) vs. "custom" with just the main
+     * question count different than 10, both use the exact same method 
+     * call to create a survey.  So I changed the method name to build_TimeMPL_Basic
+     * for now.  Also, during refactoring at a later point, it might make sense to
+     * either go one of two ways: pass the parameters like I did with the 
+     * build_TimeMPL_IterativeSurvey (even though they're global $SESSION), or simply 
+     * use the fact that the $_SESSION variables are already defined, as you had 
+     * with the build_TimeMPL_BasicSurvey---we'll see, low priority right now!
+     */
+ 
+    if ($_SESSION['isIterative'] == 'true') {
         writeSurveyStringToFile($_GET['fileName'], '.qsf', build_TimeMPL_IterativeSurvey($_GET['fileName'], getSurveyDescription(), getSurveyBrandID(), getCurrentTime(), $_SESSION['numMainQuestions'], $_SESSION['numIterativeQuestions'], $_SESSION['aStart'], $_SESSION['bStart'], $_SESSION['aSegs'], $_SESSION['bSegs']));
     } else {
         writeSurveyStringToFile($_GET['fileName'], '.txt', build_TimeMPL_BasicSurvey($_SESSION['aStart'], $_SESSION['bStart']));
     }
-}
-*/
 
-exit;
+    /*
+     * Below if chain was original logic, but the above if chain results in the same 
+     * thing with less repetition, at the expense of it maybe being a tiny bit less
+     * clear...maybe.
+     */
+
+    //Left this as it goes with the above comment and also just in case...eventually can delete though.
+    /*
+    if ($_SESSION['type'] == 'default') {
+        writeSurveyStringToFile($_GET['fileName'], '.txt', build_TimeMPL_BasicSurvey($_SESSION['aStart'], $_SESSION['bStart']));
+    } elseif ($_SESSION['type'] == 'custom') { //elseif might be unnecessary, it doesn't matter much though right now at last...
+        if ($_SESSION['isIterative'] == 'true') {               
+            writeSurveyStringToFile($_GET['fileName'], '.qsf', build_TimeMPL_IterativeSurvey($_GET['fileName'], getSurveyDescription(), getSurveyBrandID(), getCurrentTime(), $_SESSION['numMainQuestions'], $_SESSION['numIterativeQuestions'], $_SESSION['aStart'], $_SESSION['bStart'], $_SESSION['aSegs'], $_SESSION['bSegs']));
+        } else {
+            writeSurveyStringToFile($_GET['fileName'], '.txt', build_TimeMPL_BasicSurvey($_SESSION['aStart'], $_SESSION['bStart']));
+        }
+    }
+    */
+
+    exit;
+
+}
 
 
 ?>
