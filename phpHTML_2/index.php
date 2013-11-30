@@ -5,6 +5,7 @@
 //
 //DEFINE FUNCTIONS FIRST
 //
+
 function deleteTxtFiles(){//should this be in the index?
     foreach(glob("*.txt*") as $file2) {
     //echo $file2;
@@ -164,14 +165,18 @@ function printTimeTab() {
                 </div>
             </div>
               </div>
+              <div style="clear: both;"></div>
+        <div id="submit">
+            <input type="submit">
+        </div>
             </div>
             ';
-    printClearFloat();
+    
     echo'
-        <input type="submit">
+       
     </form> 
         <div id=exampleTime>
-            <table border="1">
+            <table border="1" class="tableFormat">
                 <tr>
                     <td>Decision</td>
                     <td>Option A <br> (recieve this amount <br>today)</td>
@@ -196,6 +201,7 @@ function printTimeTab() {
                 <td>16<b>[B Final]</b></td></tr>
            </table>
         </div>
+        <div style="clear: both;"></div>
     
     </div>'
     ;
@@ -204,17 +210,19 @@ function printTimeTab() {
 function printRiskTab() {   
     echo '
     <div class="tabpage" id="tabpage_2">
-    	<h2>Risk</h2>
-    <form action="checkRisk.php" method="GET" id="risk">
-         <div class = "constant" id="constChoice">
-            <h4>What is constant?
-            <input type="radio" name="constant" value="dollar" id="dollar" checked>Dollar Amount 
-            <input type="radio" name="constant" value="probability" id ="probability">Probability
-            </h4>
-        </div>';
-    printSurveyMode();
-    printClearFloat();
-    echo '
+    	
+      <div class="risk">
+        <h2>Risk</h2>
+        <form action="checkRisk.php" method="GET" id="risk">
+             <div class = "constant" id="constChoice">
+                <h4>What is constant?
+                <input type="radio" name="constant" value="dollar" id="dollar" checked>Dollar Amount 
+                <input type="radio" name="constant" value="probability" id ="probability">Probability
+                </h4>
+            </div>';
+        printSurveyMode();
+        printClearFloat();
+        echo '
         <div class="amountsA1">
             <br>
             <h3>Option A1</h3>
@@ -369,12 +377,11 @@ function printRiskTab() {
         <div id="submit">
             <input type="submit">
         </div>
-        <div id="spacer">
-        </div>
        
     </form>
+    </div>
 	<div id="exampleRisk">
-		<table border="1">
+		<table border="1" class= "tableFormat">
 		<tr>
 			<td></td>
 			<td>Option A </td>
@@ -430,10 +437,10 @@ function printRiskTab() {
 			<td> $2.00 if die roll is one-10 <br> <b>(Number of sides = 10)</b></td>
 			<td> $3.85 if die roll is one-10 <br> <b>(Number of sides = 10)</b></td>
 		</tr>
-	</table>
+            </table>
 	</div>
 <div id="exampleRisk2">
-		<table border="1">
+		<table border="1" class="tableFormat">
 		<tr>
 			<td></td>
 			<td>Option A </td>
@@ -492,16 +499,17 @@ function printRiskTab() {
 	</table>
 	</div>
 <br>
-<br>  
-    </div>          
+<br> ';
+    printClearFloat();
+    echo'</div> ';        
     
-    '; 
     
 }
 
 function printTimeAndRiskTab() {
     echo '
     <div class="tabpage" id="tabpage_3">
+        <div class="riskAndTime">
     	<h2>Risk and Time</h2>
       	<form action="checkRiskAndTime.php" method="GET" id="riskAndTime">
         ';
@@ -595,9 +603,10 @@ function printTimeAndRiskTab() {
                 
         
     </form>
+    </div>
     
         <div id=exampleRiskAndTime>
-	<table border="1">
+	<table border="1" class="tableFormat">
             <tr>
                 <td>Option A </td>
                 <td>Option B </td>
@@ -694,6 +703,9 @@ function printTimeAndRiskTab() {
         </tr>
         </table> 
         </div>
+        ';
+    printClearFloat();
+    echo'
     </div>
       
     ';
@@ -702,61 +714,137 @@ function printTimeAndRiskTab() {
 function printAmbiguityTab() {
     echo '
     <div class="tabpage" id="tabpage_4">
+        <div class="ambiguity">
     	<h2>Ambiguity Aversion</h2>
-        <form action="checkAmbiguity.php" method="GET" id="riskAndTime">
+        <form action="checkAmbiguity.php" method="GET" id="Ambiguity">
        ';
         printSurveyMode();
         printClearFloat();
         
     echo'
-     	<div class="amountsA1">
+         <div class="amountsA1">
             <h3>Option A (Win)</h3>
-            <br>
-            Starting amount: <input type="text" name="a1Initial">
-            <br>
-            <br>
-            Ending amount: <input type="text" name="a1Final">
-
-        </div>
-        <div class="amountsB1">
-            <h3>Option B (Win)</h3>
-            <br>
-            Starting amount: <input type="text" name="b1Initial">
-            <br>
-            <br>
-            Ending amount: <input type="text" name="b1Final">	
-        </div>
+            <div class="incrementSelect">
+                    <select name="count" class="count">
+                        <option value="increments"selected="selected">$ Increments</option>
+                        <option value="finalValue">Starting & Ending</option>
+                    </select>
+                    <br>
+                    <br>
+                     Starting amount: <input type="text" name="a1Initial"maxlength="9" class = "initalA1AmountInput"style="width: 50px;">
+                    <br>
+                    <div class="errorDiv"></div>
+                    <div class ="incrementalDiv">
+                        <br>
+                        $ increments: <input type="text" name="a1Increment" class="incrementVal"value="0" maxlength="9" style="width: 50px;">
+                        <br>
+                        <div class="errorDiv"></div>
+                    </div>
+                    <div class="finalAmountDiv">
+                        <br>
+                        Ending amount: <input type="text" name="a1Final" class="finalAmountVal" maxlength="9" style="width: 50px;">
+                        <br>
+                        <div class="errorDiv"></div>
+                    </div>
+          </div>
+      </div>
+       <div class="amountsB1">
+          <h3>Option B (Win)</h3>
+          <div class="incrementSelect">
+                    <select name="count" class="count">
+                        <option value="increments"selected="selected">$ Increments</option>
+                        <option value="finalValue">Starting & Ending</option>
+                    </select>
+                    <br>
+                    <br>
+                     Starting amount: <input type="text" name="b1Initial"maxlength="9" class = "initalB1AmountInput"style="width: 50px;">
+                    <br>
+                    <div class="errorDiv"></div>
+                    <div class ="incrementalDiv">
+                        <br>
+                        $ increments: <input type="text" name="b1Increment" class="incrementVal"value="0" maxlength="9" style="width: 50px;">
+                        <br>
+                        <div class="errorDiv"></div>
+                    </div>
+                    <div class="finalAmountDiv">
+                        <br>
+                        Ending amount: <input type="text" name="b1Final" class="finalAmountVal" maxlength="9" style="width: 50px;">
+                        <br>
+                        <div class="errorDiv"></div>
+                    </div>
+          </div>
+     </div>
+        
         <div style="clear: both;"></div>
-	<div class="amountsA2" id = "A2">
+        <div class="amountsA2">
             <br>
             <h3>Option A (Lose)</h3>
-            <br>
-            Starting amount: <input type="text" name="a2Initial">
-            <br>
-            <br>
-            Ending amount: <input type="text" name="a2Final">
-        </div>
-        <div class="amountsB2" id= "B2">
-            <br>
-            <h3>Option B (Lose)</h3>
-            <br>
-            Starting amount: <input type="text" name="b2Initial">
-            <br>
-            <br>
-            Ending amount: <input type="text" name="b2Final">
+            <div class="incrementSelect">
+                    <select name="count" class="count">
+                        <option value="increments"selected="selected">$ Increments</option>
+                        <option value="finalValue">Starting & Ending</option>
+                    </select>
+                    <br>
+                    <br>
+                    Starting amount: <input type="text" name="a2Initial"maxlength="9" class="initalA2AmountInput" style="width: 50px;">
+                    <br>
+                    <div class="errorDiv"></div>
+                    <div class ="incrementalDiv">
+                        <br>
+                        $ increments: <input type="text" name="a2Increment" class="incrementVal"value="0" maxlength="9" style="width: 50px;">
+                        <br>
+                        <div class="errorDiv"></div>
+                    </div>
+                    <div class="finalAmountDiv">
+                        <br>
+                        Ending amount: <input type="text" name="a2Final" class="finalAmountVal" maxlength="9" style="width: 50px;">
+                        <br>
+                        <div class="errorDiv"></div>
+                    </div>
+              </div>
         </div>
         
-        <div id="submitAmbiguity">
+        <div class="amountsB2" id= "B2">
+            <br>
+           <h3>Option B (Lose)</h3>
+            <div class="incrementSelect">
+                    <select name="count" class="count">
+                        <option value="increments"selected="selected">$ Increments</option>
+                        <option value="finalValue">Starting & Ending</option>
+                    </select>
+                    <br>
+                    <br>
+                    Starting amount: <input type="text" name="b2Initial"maxlength="9" class = "initalb2AmountInput"style="width: 50px;">
+                    <br>
+                    <div class="errorDiv"></div>
+                    <div class ="incrementalDiv">
+                        <br>
+                        $ increments: <input type="text" name="b2Increment" class="incrementVal"value="0" maxlength="9" style="width: 50px;">
+                        <br>
+                        <div class="errorDiv"></div>
+                    </div>
+                    <div class="finalAmountDiv">
+                        <br>
+                        Ending amount: <input type="text" name="b2Final" class="finalAmountVal" maxlength="9" style="width: 50px;">
+                        <br>
+                        <div class="errorDiv"></div>
+                    </div>
+              </div>	
+        </div>
+        
+        <div style="clear: both;"></div>
+        <div id="submit">
             <input type="submit">
         </div>
       
         
   
     </form>
+    </div>
     <div id=exampleAmbiguity>
         
              
-             <table border="1" cellpadding="1" cellspacing="1" style="width: 300px;">
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 300px;" class="tableFormat">
                 <tbody>
 		<tr>
 			<td style="width: 40px; text-align: center;"><strong>Decision</strong></td>
@@ -770,8 +858,8 @@ function printAmbiguityTab() {
 				</tbody>
 			</table>
 			</td>
-			<td style="width: 130px; text-align: center;"><strong>Option B: Urn B</strong>
-			<table border="1" cellpadding="1" cellspacing="1" style="text-align: center; height: 40px; width: 130px;">
+			<td style="width: 120px; text-align: center;"><strong>Option B: Urn B</strong>
+			<table border="1" cellpadding="1" cellspacing="1" style="text-align: center; height: 40px; width: 120px;">
 				<tbody>
 					<tr>
 						<td style="text-align: left;">If the ball is the color chosen</td>
@@ -783,16 +871,16 @@ function printAmbiguityTab() {
 		</tr>
 	</tbody>
 </table>
-            <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "> 
+            <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "class="tableFormat"> 
                 <tbody>  
                     <tr>   
                         <td style="width: 55px; text-align: center; ">1</td>
                               
                                   
-                                <td style="text-align: center;width: 66px;">$20.00<br> A (Win)<br> Starting</td>      
-                                <td style="text-align: center;width: 66px;">$0.00<br> A (Lose)<br> Starting</td>        
-                                <td style="text-align: center;width: 66px;">$10.00<br> B (Win)<br> Starting</td>      
-                                <td style="text-align: center;width: px;">$0.00<br> B (Lose)<br> Starting</td>     
+                                <td style="text-align: center;width: 66px;">$20.00<br> <b>A (Win)<br> Starting</b></td>      
+                                <td style="text-align: center;width: 66px;">$0.00<br> <b>A (Lose)<br> Starting</b></td>        
+                                <td style="text-align: center;width: 66px;">$10.00<br> <b>B (Win)<br> Starting</b></td>      
+                                <td style="text-align: center;width: 66px;">$0.00<br><b> B (Lose)<br> Starting</b></td>     
                                   
                                 </tbody>   
                             </table>   
@@ -800,7 +888,7 @@ function printAmbiguityTab() {
                     </tr> 
                  </tbody>
              </table>
-             <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "> 
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "class="tableFormat"> 
                 <tbody>  
                     <tr>   
                         <td style="width: 55px; text-align: center; ">2</td>
@@ -809,7 +897,7 @@ function printAmbiguityTab() {
                                 <td style="text-align: center;width: 66px;">$18.00</td>      
                                 <td style="text-align: center;width: 66px;">$0.00</td>        
                                 <td style="text-align: center;width: 66px;">$10.00</td>      
-                                <td style="text-align: center;width: px;">$0.00</td>     
+                                <td style="text-align: center;width: 66px;">$0.00</td>     
                                   
                                 </tbody>   
                             </table>   
@@ -817,7 +905,7 @@ function printAmbiguityTab() {
                     </tr> 
                  </tbody>
              </table>
-             <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "> 
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "class="tableFormat"> 
                 <tbody>  
                     <tr>   
                         <td style="width: 55px; text-align: center; ">3</td>
@@ -826,7 +914,7 @@ function printAmbiguityTab() {
                                 <td style="text-align: center;width: 66px;">$16.00</td>      
                                 <td style="text-align: center;width: 66px;">$0.00</td>        
                                 <td style="text-align: center;width: 66px;">$10.00</td>      
-                                <td style="text-align: center;width: px;">$0.00</td>     
+                                <td style="text-align: center;width: 66px;">$0.00</td>     
                                   
                                 </tbody>   
                             </table>   
@@ -834,7 +922,7 @@ function printAmbiguityTab() {
                     </tr> 
                  </tbody>
              </table>
-             <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "> 
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "class="tableFormat"> 
                 <tbody>  
                     <tr>   
                         <td style="width: 55px; text-align: center; ">4</td>
@@ -843,7 +931,7 @@ function printAmbiguityTab() {
                                 <td style="text-align: center;width: 66px;">$14.00</td>      
                                 <td style="text-align: center;width: 66px;">$0.00</td>        
                                 <td style="text-align: center;width: 66px;">$10.00</td>      
-                                <td style="text-align: center;width: px;">$0.00</td>     
+                                <td style="text-align: center;width: 66px;">$0.00</td>     
                                   
                                 </tbody>   
                             </table>   
@@ -851,7 +939,7 @@ function printAmbiguityTab() {
                     </tr> 
                  </tbody>
              </table>
-              <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "> 
+              <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "class="tableFormat"> 
                 <tbody>  
                     <tr>   
                         <td style="width: 55px; text-align: center; ">5</td>
@@ -860,7 +948,7 @@ function printAmbiguityTab() {
                                 <td style="text-align: center;width: 66px;">$12.00</td>      
                                 <td style="text-align: center;width: 66px;">$0.00</td>        
                                 <td style="text-align: center;width: 66px;">$10.00</td>      
-                                <td style="text-align: center;width: px;">$0.00</td>     
+                                <td style="text-align: center;width: 66px;">$0.00</td>     
                                   
                                 </tbody>   
                             </table>   
@@ -868,7 +956,7 @@ function printAmbiguityTab() {
                     </tr> 
                  </tbody>
              </table>
-             <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "> 
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "class="tableFormat"> 
                 <tbody>  
                     <tr>   
                         <td style="width: 55px; text-align: center; ">6</td>
@@ -877,7 +965,7 @@ function printAmbiguityTab() {
                                 <td style="text-align: center;width: 66px;">$10.00</td>      
                                 <td style="text-align: center;width: 66px;">$0.00</td>        
                                 <td style="text-align: center;width: 66px;">$10.00</td>      
-                                <td style="text-align: center;width: px;">$0.00</td>     
+                                <td style="text-align: center;width: 66px;">$0.00</td>     
                                   
                                 </tbody>   
                             </table>   
@@ -885,7 +973,7 @@ function printAmbiguityTab() {
                     </tr> 
                  </tbody>
              </table>
-             <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "> 
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "class="tableFormat"> 
                 <tbody>  
                     <tr>   
                         <td style="width: 55px; text-align: center; ">7</td>
@@ -894,7 +982,7 @@ function printAmbiguityTab() {
                                 <td style="text-align: center;width: 66px;">$8.00</td>      
                                 <td style="text-align: center;width: 66px;">$0.00</td>        
                                 <td style="text-align: center;width: 66px;">$10.00</td>      
-                                <td style="text-align: center;width: px;">$0.00</td>     
+                                <td style="text-align: center;width: 66px;">$0.00</td>     
                                   
                                 </tbody>   
                             </table>   
@@ -902,7 +990,7 @@ function printAmbiguityTab() {
                     </tr> 
                  </tbody>
              </table>
-             <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "> 
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "class="tableFormat"> 
                 <tbody>  
                     <tr>   
                         <td style="width: 55px; text-align: center; ">8</td>
@@ -911,7 +999,7 @@ function printAmbiguityTab() {
                                 <td style="text-align: center;width: 66px;">$6.00</td>      
                                 <td style="text-align: center;width: 66px;">$0.00</td>        
                                 <td style="text-align: center;width: 66px;">$10.00</td>      
-                                <td style="text-align: center;width: px;">$0.00</td>     
+                                <td style="text-align: center;width: 66px;">$0.00</td>     
                                   
                                 </tbody>   
                             </table>   
@@ -919,7 +1007,7 @@ function printAmbiguityTab() {
                     </tr> 
                  </tbody>
              </table>
-             <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "> 
+             <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "class="tableFormat"> 
                 <tbody>  
                     <tr>   
                         <td style="width: 55px; text-align: center; ">9</td>
@@ -928,7 +1016,7 @@ function printAmbiguityTab() {
                                 <td style="text-align: center;width: 66px;">$4.00</td>      
                                 <td style="text-align: center;width: 66px;">$0.00</td>        
                                 <td style="text-align: center;width: 66px;">$10.00</td>      
-                                <td style="text-align: center;width: px;">$0.00</td>     
+                                <td style="text-align: center;width: 66px;">$0.00</td>     
                                   
                                 </tbody>   
                             </table>   
@@ -936,16 +1024,16 @@ function printAmbiguityTab() {
                     </tr> 
                  </tbody>
              </table>
-              <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "> 
+              <table border="1" cellpadding="1" cellspacing="1" style="width: 320px; "class="tableFormat"> 
                 <tbody>  
                     <tr>   
                         <td style="width: 55px; text-align: center; ">10</td>
                               
                                   
-                                <td style="text-align: center;width: 66px;">$2.00<br> A (Win)<br> Ending</td>      
-                                <td style="text-align: center;width: 66px;">$0.00<br> A (Lose)<br> Ending</td>        
-                                <td style="text-align: center;width: 66px;">$10.00<br> B (Win)<br> Ending</td>      
-                                <td style="text-align: center;width: px;">$0.00<br> B (Lose)<br> Ending</td>     
+                                <td style="text-align: center;width: 66px;">$2.00<br> <b>A (Win)<br> Ending</b></td>      
+                                <td style="text-align: center;width: 66px;">$0.00<br> <b>A (Lose)<br> Ending</b></td>        
+                                <td style="text-align: center;width: 66px;">$10.00<br><b> B (Win)<br> Ending</b></td>      
+                                <td style="text-align: center;width: 66px;">$0.00<br> <b>B (Lose)<br> Ending</b></td>     
                                   
                                 </tbody>   
                             </table>   
@@ -955,8 +1043,9 @@ function printAmbiguityTab() {
              </table>
 
 
-    </div>
-      
+    </div>';
+    printClearFloat();
+    echo'
     </div>
       
     ';
