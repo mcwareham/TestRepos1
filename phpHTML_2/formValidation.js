@@ -244,4 +244,69 @@ $(document).ready(function(){
     }
     
     });
+    $('#Ambiguity').validate({ // check time variables
+        rules: {
+            a1Initial: {
+                required: true,
+                number: true,
+                positiveNumber:true
+            },
+            a2Initial: {
+                required: true,
+                number: true,
+                positiveNumber:true
+            },
+            b1Initial: {
+                required: true,
+                number: true,
+                positiveNumber:true
+            },
+            b2Initial: {
+                required: true,
+                number: true,
+                positiveNumber:true
+            },
+            a1Increment:{
+                required: true,
+                number: true
+            },
+            a2Increment:{
+                required: true,
+                number: true
+            },
+            b1Increment:{
+                required: true,
+                number: true
+            },
+            b2Increment:{
+                required: true,
+                number: true
+            },
+            a1Final:{
+                required: true,
+                number: true,
+                positiveNumber:true
+                //greaterThan: '.initalA1AmountInput'
+            },
+            b1Final:{
+                required: true,
+                number: true,
+                positiveNumber:true
+                //greaterThan: '.initalB1AmountInput'
+            },
+            a2Final:{
+                required: true,
+                number: true,
+                positiveNumber:true
+                //greaterThan: '.initalA2AmountInput'
+            },
+            b2Final:{
+                required: true,
+                number: true,
+                positiveNumber:true
+                //greaterThan: '.initalb2AmountInput'
+            }
+        }
+     });
+    
 });
