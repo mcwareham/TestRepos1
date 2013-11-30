@@ -8,22 +8,49 @@
 
 function setDefaultTimeMPLSessionVars() {
     $_SESSION['numIter'] =10;
-
-   if(is_numeric($_GET['a1Initial'])) $_SESSION['a1Start'] = $_GET['a1Initial'];
-    if(is_numeric($_GET['a1Final'])) $_SESSION['a1End'] = $_GET['a1Final'];
-    if(is_numeric($_GET['a2Initial'])) $_SESSION['a2Start'] = $_GET['a2Initial'];
-    if(is_numeric($_GET['a2Final'])) $_SESSION['a2End'] = $_GET['a2Final'];
-    if(is_numeric($_GET['b1Initial']))$_SESSION['b1Start'] = $_GET['b1Initial'];
-     if(is_numeric($_GET['b1Final']))$_SESSION['b1End'] = $_GET['b1Final'];
-    if(is_numeric($_GET['b2Initial']))$_SESSION['b2Start'] = $_GET['b2Initial'];
-    if(is_numeric($_GET['b2Final'])) $_SESSION['b2End'] = $_GET['b2Final'];
     
-    $_SESSION['a1Segs'] = ($_SESSION['a1End']- $_SESSION['a1Start'])/($_SESSION['numIter']-1);
-    $_SESSION['a2Segs'] = ($_SESSION['a2End']- $_SESSION['a2Start'])/($_SESSION['numIter']-1);
-    $_SESSION['b1Segs'] = ($_SESSION['b1End']-$_SESSION['b1Start'])/($_SESSION['numIter']-1);
-    $_SESSION['b2Segs'] = ($_SESSION['b2End']-$_SESSION['b2Start'])/($_SESSION['numIter']-1);
+    
+    $_SESSION['a1Start'] = $_GET['a1Initial'];
+    if (isset($_GET['a1Increment'])){//increment mode for a1
+        $_SESSION['a1Segs']=$_GET['a1Increment'];
+    }
+    else{//not increment mode for a1
+        $_SESSION['a1End'] = $_GET['a1Final'];
+        $_SESSION['a1Segs'] = ($_SESSION['a1End']- $_SESSION['a1Start'])/($_SESSION['numIter']-1);
+    }
+    $_SESSION['a1Prob']=$_GET['a1Prob'];
+    
+    $_SESSION['a2Start'] = $_GET['a2Initial'];
+    if (isset($_GET['a2Increment'])){//increment mode for a2
+        $_SESSION['a2Segs']=$_GET['a2Increment'];
+    }
+    else{//not increment mode for a2
+        $_SESSION['a2End'] = $_GET['a2Final'];
+        $_SESSION['a2Segs'] = ($_SESSION['a2End']- $_SESSION['a2Start'])/($_SESSION['numIter']-1);
+    }
+    $_SESSION['a2Prob']=$_GET['a2Prob'];
+    
+    $_SESSION['b1Start'] = $_GET['b1Initial'];
+    if (isset($_GET['b1Increment'])){//increment mode for b1
+        $_SESSION['b1Segs']=$_GET['b1Increment'];
+    }
+    else{//not increment mode for b1
+        $_SESSION['b1End'] = $_GET['b1Final'];
+        $_SESSION['b1Segs'] = ($_SESSION['b1End']- $_SESSION['b1Start'])/($_SESSION['numIter']-1);
+    }
+    $_SESSION['b1Prob']=$_GET['b1Prob'];
+    
+     $_SESSION['b2Start'] = $_GET['b2Initial'];
+    if (isset($_GET['b2Increment'])){//increment mode for b1
+        $_SESSION['b2Segs']=$_GET['b2Increment'];
+    }
+    else{//not increment mode for b1
+        $_SESSION['b2End'] = $_GET['b2Final'];
+        $_SESSION['b2Segs'] = ($_SESSION['b2End']- $_SESSION['b2Start'])/($_SESSION['numIter']-1);
+    }
+    $_SESSION['b2Prob']=$_GET['b2Prob'];
+    
    
-  /*
     echo'<strong>Urn A contains 10 balls: 5 red and 5 black. 
         <br>Urn B contains 10 balls: some are red, some are black, but the amount of each is unknown. 
         <br>Pick a color to bet on, and keep this choice in mind when making decisions for the next set of questions to follow below:</strong>
@@ -56,7 +83,7 @@ function setDefaultTimeMPLSessionVars() {
 			</td>
 		</tr>
 	</tbody>
-</table>';*/
+</table>';
 
     $a1Sum=$_SESSION['a1Start'];
     $a2Sum=$_SESSION['a2Start'];
@@ -71,8 +98,8 @@ function setDefaultTimeMPLSessionVars() {
                             <table border="1" cellpadding="1" cellspacing="1" style="width: 225px;">    
                                 <tbody>     
                                 <tr>      
-                                <td style="text-align: center; width: 94px;">$'. round($a1Sum,2).'</td>      
-                                <td style="text-align: center;">$'. round($a2Sum,2).'</td>     
+                                <td style="text-align: center; width: 94px;">$'. number_format($a1Sum,2).'</td>      
+                                <td style="text-align: center;">$'. number_format($a2Sum,2).'</td>     
                                 </tr>    
                                 </tbody>   
                             </table>   
@@ -81,8 +108,8 @@ function setDefaultTimeMPLSessionVars() {
                             <table border="1" cellpadding="1" cellspacing="1" style="width: 225px;">    
                                 <tbody>     
                                 <tr>      
-                                <td style="text-align: center; width: 94px;">$'. round($b1Sum,2).'</td>      
-                                <td style="text-align: center;">$'. round($b1Sum,2).'</td>     
+                                <td style="text-align: center; width: 94px;">$'. number_format($b1Sum,2).'</td>      
+                                <td style="text-align: center;">$'. number_format($b2Sum,2).'</td>     
                                 </tr>    
                                 </tbody>   
                             </table>   
