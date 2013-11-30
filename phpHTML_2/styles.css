@@ -1,3 +1,9 @@
+/** {
+  zoom: 102%;
+}*/
+
+
+
 * {
 	margin:0;
 	padding:0;
@@ -35,81 +41,6 @@ h2{
 	text-decoration:none;
 	text-align:center;
 }
-
-.one {
-	width:700px;
-	padding:15px;
-	background-color:#2e2e2e;
-	-moz-border-radius: 4px;
-	border-radius: 4px; 
-}
-
-.one > .tabs{
-	height:30px;
-	overflow:hidden;
-}
-
-.one > .tabs > ul{
-	font: 1em;
-	list-style:none;
-}
-
-.one > .tabs > ul > li{
-	margin:0 2px 0 0;
-	padding:7px 10px;
-	display:block;
-	float:left;
-	color:#FFF;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	user-select: none;
-	-moz-border-radius-topleft: 4px;
-	-moz-border-radius-topright: 4px;
-	-moz-border-radius-bottomright: 0px;
-	-moz-border-radius-bottomleft: 0px;
-	border-top-left-radius:4px;
-	border-top-right-radius: 4px;
-	border-bottom-right-radius: 0px;
-	border-bottom-left-radius: 0px; 
-	background: #C9C9C9; /* old browsers */
-	background: -moz-linear-gradient(top, #0C91EC 0%, #257AB6 100%); /* firefox */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0C91EC), color-stop(100%,#257AB6)); /* webkit */
-}
-
-.one > .tabs > ul > li:hover{
-	background: #FFFFFF; /* old browsers */
-	background: -moz-linear-gradient(top, #FFFFFF 0%, #F3F3F3 10%, #F3F3F3 50%, #FFFFFF 100%); /* firefox */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFFF), color-stop(10%,#F3F3F3), color-stop(50%,#F3F3F3), color-stop(100%,#FFFFFF)); /* webkit */
-	cursor:pointer;
-	color: #333;
-}
-
-.one > .tabs > ul > li.tabActiveHeader{
-	background: #FFFFFF; /* old browsers */
-	background: -moz-linear-gradient(top, #FFFFFF 0%, #F3F3F3 10%, #F3F3F3 50%, #FFFFFF 100%); /* firefox */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFFF), color-stop(10%,#F3F3F3), color-stop(50%,#F3F3F3), color-stop(100%,#FFFFFF)); /* webkit */
-	cursor:pointer;
-	color: #333;
-}
-
-.one > .tabscontent {
-	-moz-border-radius-topleft: 0px;
-	-moz-border-radius-topright: 4px;
-	-moz-border-radius-bottomright: 4px;
-	-moz-border-radius-bottomleft: 4px;
-	border-top-left-radius: 0px;
-	border-top-right-radius: 4px;
-	border-bottom-right-radius: 4px;
-	border-bottom-left-radius: 4px; 
-	padding:10px 10px 25px;
-	background: #FFFFFF; /* old browsers */
-	background: -moz-linear-gradient(top, #FFFFFF 0%, #FFFFFF 90%, #e4e9ed 100%); /* firefox */
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFFFFF), color-stop(90%,#FFFFFF), color-stop(100%,#e4e9ed)); /* webkit */
-	margin:0;
-	color:#333;
-}
-
-
 /*Style Two*/
 .amounts{
 }
@@ -218,75 +149,30 @@ position:relative;
 .submitDiv{
     float:left;
 }
-/*#iterativeDiv{
-    float:right;
-}*/
-.optionWrapper{
-    width:350px;
-}
-
 
 #numSides{
 float: left;
 padding-right: 50px;
 }
 
-#exampleRisk{
-position: absolute;
-    top: 100px;
-    right: 0px;
-    width:330px;
-background-color: #c9c9c9;
-color:#666666;
-}
-#exampleRisk2{
-position: absolute;
-    top: 100px;
-    right: 0px;
-background-color: #c9c9c9;
-color:#666666;
-}
-#exampleRiskAndTime{
-position: absolute;
-    top: 70px;
-    right: 0px;
-    width:330px;
-background-color: #c9c9c9;
-color:#666666;
-}
-#exampleAmbiguity{
-    position: absolute;
-    top:25px;
-    right:25px;
-    width:330px;
-    background-color: #c9c9c9;
-    color:#666666;
-}
-#exampleTime{
-    position: absolute;
-    top:40px;
-    right:60px;
-    background-color: #c9c9c9;
-    color:#666666;
-    width:300px;
-}
 #tabpage_3{
  position: relative;
-
 overflow: auto; 
-clear: both;
-float: none;
+
 }
 #tabpage_2{
  position: relative;
+  overflow:auto;
 
 }
 #tabpage_4{
  position: relative;
+ overflow:auto;
 
 }
 #tabpage_1{
  position: relative;
+ overflow:auto;
 
 }
 
@@ -307,4 +193,45 @@ float: none;
 }
 #spacer{
     height:120px;
+}
+
+.time{
+    float:left;
+    width:350px;
+    margin-left:15px;
+}
+.tableFormat{
+   background-color: #c9c9c9;
+    color:#666666;
+}
+#exampleTime{
+   /* background-color: #c9c9c9;*/
+    /*color:#666666;*/
+    
+    padding-top:80px;
+}
+.risk{
+    float:left;
+    width:400px;
+    margin-left:15px;
+}
+#exampleRisk{
+    padding-top:60px;
+}
+#exampleRisk2{
+    padding-top:60px;
+}
+.riskAndTime{
+    float:left;
+    width:400px;
+}
+#exampleRiskAndTime{
+    padding-top:60px;
+}
+.ambiguity{
+    float:left;
+    width:400px;
+}
+#exampleAmbiguity{
+    padding-top:60px;
 }
