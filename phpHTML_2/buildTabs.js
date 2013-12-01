@@ -52,9 +52,10 @@ $(document).ready(function(){
 
 
     if($(this).val()==='default'){
-        $(this).parent().parent().find('.iterativeDiv').hide();
+         $(this).parent().parent().find('.iterativeCheckbox').attr("checked",false);
+         $(this).parent().parent().find('.iterativeDiv').hide();
         $(this).parent().parent().find('.customQuestionDiv').hide();
-        $(this).parent().parent().find('.iterativeCheckbox').attr("checked",false);
+       
     }
     else{
         $(this).parent().parent().find('.iterativeDiv').show();

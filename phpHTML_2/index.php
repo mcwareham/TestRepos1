@@ -12,6 +12,12 @@ function deleteTxtFiles(){//should this be in the index?
     unlink($file2); // Delete only .txt files through the loop
 }
 }
+function deleteQsfFiles(){//should this be in the index?
+    foreach(glob("*.qsf*") as $file2) {
+    //echo $file2;
+    unlink($file2); // Delete only .txt files through the loop
+}
+}
 
 function printSurveyMode(){
     echo'
@@ -1082,7 +1088,8 @@ function printTailHTML() {
 //
 //EXECUTE RELEVANT LOGIC FOR THIS PAGE
 //
-deleteTxtFiles();
+deleteTxtFiles();//deletes all txt files
+deleteQsfFiles();//deletes all qsf files
 printHeadHTML();//contains javascript files
 printTimeTab();
 printRiskTab();

@@ -337,7 +337,7 @@ function generateRandomCharString($length) {
 //EXECUTE RELEVANT LOGIC FOR THIS PAGE
 //
 
-if (session_status() != PHP_SESSION_ACTIVE) {
+if (session_status() != PHP_SESSION_ACTIVE) {//Hold off for our server
     session_start();
 }
 
