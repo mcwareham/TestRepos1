@@ -31,7 +31,7 @@ function printSurveyMode(){
                 </select>
             </div>
             <div class="iterativeDiv">
-                Interative <input type="checkbox" name="iterative" class="iterativeCheckbox"/>
+                Interative <input type="checkbox" name="iterative" class="iterativeCheckbox" value="yes"/>
                 <br>
             </div>
             <div class="customQuestionDiv">

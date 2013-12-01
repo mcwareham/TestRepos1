@@ -98,9 +98,9 @@ function build_RiskMPL_BasicSurvey() {
 //EXECUTE RELEVANT LOGIC FOR THIS PAGE
 //
 
-if (session_status() != PHP_SESSION_ACTIVE) {
+//if (session_status() != PHP_SESSION_ACTIVE) {
     session_start();
-}
+//}
 
 
 

@@ -105,9 +105,9 @@ black
 //EXECUTE RELEVANT LOGIC FOR THIS PAGE
 //
 
-if (session_status() != PHP_SESSION_ACTIVE) {
+//if (session_status() != PHP_SESSION_ACTIVE) {
     session_start();
-}
+//}
 
 if ($_SESSION['isTest']) {
     /* 
@@ -116,8 +116,8 @@ if ($_SESSION['isTest']) {
      * file from running the code below (in the else clause)
      */
 } else {
-    ini_set('display_errors', 1);
-    error_reporting(~0);
+    /*ini_set('display_errors', 1);
+    error_reporting(~0);*/
     date_default_timezone_set('America/Anchorage');
     include_once 'writeSurveyStringToFile.php';
    

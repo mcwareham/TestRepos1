@@ -259,6 +259,7 @@ function testAmbiguityMPL_Basic($a1Start, $a1End, $a2Start, $a2End, $b1Start, $b
 //EXECUTE TEST LOGIC
 //
 
+
 if (session_status() != PHP_SESSION_ACTIVE) {
     session_start();
 }

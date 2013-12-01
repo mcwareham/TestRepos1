@@ -26,7 +26,8 @@ $(document).ready(function(){
     });
     
     
-    $('.count').click(function (){//if they change it after the page loads
+    //USE CHANGE FOR CHROME ON MACs
+    $('.count').change(function (){//if they change it after the page loads
        
         if($(this).val()==="increments"){
             $(this).parent().find('.finalAmountVal').attr('disabled', 'disabled').val('');
@@ -73,7 +74,7 @@ $(document).ready(function(){
     
     
     
-    $('.Type').click(function (){//if they change it after the page loads
+    $('.Type').change(function (){//if they change it after the page loads
        
         if($(this).val()==='default'){
             $(this).parent().parent().find('.iterativeCheckbox').attr("checked",false);
@@ -95,7 +96,7 @@ $(document).ready(function(){
    
     });
     
-    $('.iterativeCheckbox').click(function (){//if they just click on the iterative check box after the page loads...
+    $('.iterativeCheckbox').change(function (){//if they just click on the iterative check box after the page loads...
         if($(this).is(':checked')){
             $(this).parent().parent().find('.numIterativeQuestions').removeAttr('disabled').val('10');
             }

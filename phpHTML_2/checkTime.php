@@ -14,6 +14,7 @@ function setSharedTimeMPLSessionVars() {
     $_SESSION['delay'] = $_GET['delay'];
     $_SESSION['units'] = $_GET['units'];
     
+    $_SESSION['isIterative']='false'; //can't be iterative if default
     
     if (isset($_GET['aIncrement'])){//increment mode for a
         $_SESSION['aSegs']=$_GET['aIncrement'];
@@ -69,7 +70,7 @@ function setCustomTimeMPLSessionVars(){//Set custom variables
     $_SESSION['numMainQuestions']= $_GET['numMainQuestions'];//this sets the custom number of questions
      setSharedTimeMPLSessionVars();  
     
-    if(isset($_GET['iterative'])){//it's iterative
+    if(isset($_GET['iterative'])&& $_GET['iterative']=='yes'){//it's iterative
         $_SESSION['isIterative']='true';
         $_SESSION['numIterativeQuestions']= $_GET['numIterativeQuestions'];//set number of iterative questions
     }
