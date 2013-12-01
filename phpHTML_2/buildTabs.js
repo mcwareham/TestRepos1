@@ -47,23 +47,22 @@ $(document).ready(function(){
     //logic for Default or Custom setting
     
     
-    
-    $('.Type').each(function(){
+    $('.Type').each(function(){//page first loads..... also handles back button
     
 
 
     if($(this).val()==='default'){
         $(this).parent().parent().find('.iterativeDiv').hide();
         $(this).parent().parent().find('.customQuestionDiv').hide();
-        
+        $(this).parent().parent().find('.iterativeCheckbox').attr("checked",false);
     }
     else{
         $(this).parent().parent().find('.iterativeDiv').show();
         $(this).parent().parent().find('.customQuestionDiv').show();
-        if($(this).parent().parent().find('.iterativeCheckbox').is(':checked')){
+        if($(this).parent().parent().find('.iterativeCheckbox').is(':checked')){//if it's iterative allow number of iterations
             $(this).parent().parent().find('.numIterativeQuestions').removeAttr('disabled');
         }
-        else{
+        else{//not iterative don't allow
             $(this).parent().parent().find('.numIterativeQuestions').attr('disabled', 'disabled').val('');
         }
     }
@@ -76,13 +75,14 @@ $(document).ready(function(){
     $('.Type').click(function (){//if they change it after the page loads
        
         if($(this).val()==='default'){
-           
+            $(this).parent().parent().find('.iterativeCheckbox').attr("checked",false);
             $(this).parent().parent().find('.iterativeDiv').hide();
             $(this).parent().parent().find('.customQuestionDiv').hide();
         }
         else{//Custom Choice
              $(this).parent().parent().find('.iterativeDiv').show();
             $(this).parent().parent().find('.customQuestionDiv').show();
+            $(this).parent().parent().find('.iterativeCheckbox').removeAttr("disabled");
            if($(this).parent().parent().find('.iterativeCheckbox').is(':checked')){
             $(this).parent().parent().find('.numIterativeQuestions').removeAttr('disabled').val('10');
             }
@@ -94,7 +94,7 @@ $(document).ready(function(){
    
     });
     
-    $('.iterativeCheckbox').click(function (){
+    $('.iterativeCheckbox').click(function (){//if they just click on the iterative check box after the page loads...
         if($(this).is(':checked')){
             $(this).parent().parent().find('.numIterativeQuestions').removeAttr('disabled').val('10');
             }

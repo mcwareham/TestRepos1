@@ -76,7 +76,7 @@ function printHeadHTML() {//contains files added: css, js, etc
     <body>
     
     <div id="wrapper">';
-    printTestButton();
+    //printTestButton();
     echo'
         <div id="tabContainer">
           <div class="tabs">
@@ -1056,6 +1056,7 @@ function printAmbiguityTab() {
                     </tr> 
                  </tbody>
              </table>
+             
 
 
     </div>';

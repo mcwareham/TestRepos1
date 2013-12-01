@@ -234,6 +234,7 @@ overflow: auto;
 }
 #exampleAmbiguity{
     padding-top:60px;
+    float:right;
 }
 .testB{
     float:right;
