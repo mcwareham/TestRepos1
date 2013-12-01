@@ -67,6 +67,7 @@ function testTimeMPL_Basic($aStart, $bStart, $delay, $units, $aSegs, $bSegs, $nu
     $_SESSION['bSegs'] = $bSegs;
     $_SESSION['numMainQuestions'] = $numMainQuestions;
     
+    
     $arr = explode('.', $newFile);
   
     $fileName = $arr[0];
@@ -74,7 +75,9 @@ function testTimeMPL_Basic($aStart, $bStart, $delay, $units, $aSegs, $bSegs, $nu
     
     
     include_once 'writeTimeTXT.php';
-    $s = build_TimeMPL_BasicSurvey($aStart, $bStart); 
+    
+   $s = build_TimeMPL_BasicSurvey($aStart, $bStart); 
+    
     
     writeSurveyStringToFile($fileName, $ext, $s);
     
@@ -247,59 +250,8 @@ function testAmbiguityMPL_Basic($a1Start, $a1End, $a2Start, $a2End, $b1Start, $b
     
 }
 
-/* 
- * BELOW WAS YOUR ORIGINAL LOGIC JIMMY (IN THIS BIG COMMENT)
- 
 
-
-//test Ambiguity
-
-
-
-session_start();
-$_SESSION['numIter'] =10;
-   $_SESSION['a1Start'] = 20;
-    $_SESSION['a1End'] = 2;
-    $_SESSION['a2Start'] = 0;
-    $_SESSION['a2End'] = 0;
-    $_SESSION['b1Start'] = 10;
-    $_SESSION['b1End'] = 10;
-    $_SESSION['b2Start'] = 0;
-    $_SESSION['b2End'] = 0;
-    $_SESSION['delay'] = 30;
-    $_SESSION['units'] = 'days';
     
- 
-    
-    $_SESSION['a1Segs'] = ($_SESSION['a1End']- $_SESSION['a1Start'])/($_SESSION['numIter']-1);
-    $_SESSION['a2Segs'] = ($_SESSION['a2End']- $_SESSION['a2Start'])/($_SESSION['numIter']-1);
-    $_SESSION['b1Segs'] = ($_SESSION['b1End']-$_SESSION['b1Start'])/($_SESSION['numIter']-1);
-    $_SESSION['b2Segs'] = ($_SESSION['b2End']-$_SESSION['b2Start'])/($_SESSION['numIter']-1);
-    
-   
-   $_GET['fileName']="testMonster";
-   include'writeAmbiguityTXT.php';
-   $_GET['fileName']="newTest";
-   include'writeTXT.php';
-    $fileNew="testMonster.txt";
-    $fileOld="testMonsterComp.txt";
-    
-    
-    
-    if(compareFiles($fileNew, $fileOld)){
-        echo'test passed';
-    }
-    else{
-        echo'test failed';
-    }
-
-*/
-    
-
-
-
-
-
 
 
     
@@ -310,20 +262,21 @@ $_SESSION['numIter'] =10;
 if (session_status() != PHP_SESSION_ACTIVE) {
     session_start();
 }
+
 $_SESSION['isTest'] = true;
 $resultString = "";
 
 
 
 include_once 'writeSurveyStringToFile.php';
-
+define('DS', DIRECTORY_SEPARATOR);//define directory /'s for Windows and Linux
 
 //Time MPL Test(s)
 //echo getcwd();
 //exit;
-$resultString .= testTimeMPL_Basic(8, 7, 30, 'days', 0, 1, 10, getcwd()."\\verificationFiles\\testTimeMPL_compare_1.txt", "testTimeMPL_1.txt") . '<br>'; 
-$resultString .= testTimeMPL_Basic(20, 0, 7, 'days', 5, 10, 10, getcwd()."\\verificationFiles\\testTimeMPL_compare_2.txt", "testTimeMPL_2.txt") . '<br>'; 
-$resultString .= testTimeMPL_Basic(50000, 20000, 100, 'days', 5000, 20000, 10, getcwd()."\\verificationFiles\\testTimeMPL_compare_3.txt", "testTimeMPL_3.txt") . '<br>'; 
+$resultString .= testTimeMPL_Basic(8, 7, 30, 'days', 0, 1, 10, getcwd().DS ."verificationFiles".DS."testTimeMPL_compare_1.txt", "testTimeMPL_1.txt") . '<br>'; 
+$resultString .= testTimeMPL_Basic(20, 0, 7, 'days', 5, 10, 10, getcwd().DS."verificationFiles".DS."testTimeMPL_compare_2.txt", "testTimeMPL_2.txt") . '<br>'; 
+$resultString .= testTimeMPL_Basic(50000, 20000, 100, 'days', 5000, 20000, 10, getcwd().DS ."verificationFiles".DS ."testTimeMPL_compare_3.txt", "testTimeMPL_3.txt") . '<br>'; 
 
 
 
@@ -333,38 +286,41 @@ $resultString .= testTimeMPL_Basic(50000, 20000, 100, 'days', 5000, 20000, 10, g
  * Bah, include_once not working as it says it does,
  * so have to use it only *once* here >.<...
  */
+
+
 include_once 'writeRiskTXT.php';
 
 //shoot, notice: for 1.60, if you don't use '1.60', it takes it as 1.6, so it may be best to just use '#' instead of just # for all cases for consistency, but it doesn't really matter
-$resultString .= testRiskMPL_Basic_ConstantDollar(2, '1.60', 3.85, '0.10', 10, 10, getcwd()."\\verificationFiles\\testRiskMPL_compare_1.txt", "testRiskMPL_1.txt") . '<br>';
-$resultString .= testRiskMPL_Basic_ConstantDollar(200, 0, 40, 50, 10, 10, getcwd()."\\verificationFiles\\testRiskMPL_compare_3.txt", "testRiskMPL_3.txt") . '<br>';
-$resultString .= testRiskMPL_Basic_ConstantDollar(0, 123456, 123456, 0, 10, 10, getcwd()."\\verificationFiles\\testRiskMPL_compare_4.txt", "testRiskMPL_4.txt") . '<br>';
+$resultString .= testRiskMPL_Basic_ConstantDollar(2, '1.60', 3.85, '0.10', 10, 10, getcwd().DS."verificationFiles".DS."testRiskMPL_compare_1.txt", "testRiskMPL_1.txt") . '<br>';
+$resultString .= testRiskMPL_Basic_ConstantDollar(200, 0, 40, 50, 10, 10, getcwd().DS."verificationFiles".DS."testRiskMPL_compare_3.txt", "testRiskMPL_3.txt") . '<br>';
+$resultString .= testRiskMPL_Basic_ConstantDollar(0, 123456, 123456, 0, 10, 10, getcwd().DS."verificationFiles".DS."testRiskMPL_compare_4.txt", "testRiskMPL_4.txt") . '<br>';
 
 
-$resultString .= testRiskMPL_Basic_ConstantProbability(1, 1, 'one', 0.50, 0, '2-10', 2.50, 0.50, 'one-2', 2, 0, '3-10', 10, getcwd()."\\verificationFiles\\testRiskMPL_compare_2.txt", "testRiskMPL_2.txt") . '<br>';
-$resultString .= testRiskMPL_Basic_ConstantProbability(1000, 1000, 'one', 500, -50, '2-20', 200, 800, 'one-50', 200, 0, '51-70', 10, getcwd()."\\verificationFiles\\testRiskMPL_compare_5.txt", "testRiskMPL_5.txt") . '<br>';
-$resultString .= testRiskMPL_Basic_ConstantProbability(1000, -200, 'one-100', 500, -50, '101-156', 200, -50, 'one-53', 200, 0, '51-86', 10, getcwd()."\\verificationFiles\\testRiskMPL_compare_6.txt", "testRiskMPL_6.txt") . '<br>';
+$resultString .= testRiskMPL_Basic_ConstantProbability(1, 1, 'one', 0.50, 0, '2-10', 2.50, 0.50, 'one-2', 2, 0, '3-10', 10, getcwd().DS."verificationFiles".DS."testRiskMPL_compare_2.txt", "testRiskMPL_2.txt") . '<br>';
+$resultString .= testRiskMPL_Basic_ConstantProbability(1000, 1000, 'one', 500, -50, '2-20', 200, 800, 'one-50', 200, 0, '51-70', 10, getcwd().DS."verificationFiles".DS."testRiskMPL_compare_5.txt", "testRiskMPL_5.txt") . '<br>';
+$resultString .= testRiskMPL_Basic_ConstantProbability(1000, -200, 'one-100', 500, -50, '101-156', 200, -50, 'one-53', 200, 0, '51-86', 10, getcwd().DS."verificationFiles".DS."testRiskMPL_compare_6.txt", "testRiskMPL_6.txt") . '<br>';
 
 
 
 //Time and Risk MPL Test(s)
 
-$resultString .= testTimeAndRiskMPL_Basic(10, 30, 'days', 3.85, '0.10', '0.10', 3.85, 3.85, 3.85, '0.10', '0.10', 10, getcwd()."\\verificationFiles\\testTimeAndRiskMPL_compare_1.txt", "testTimeAndRiskMPL_1.txt") . '<br>';
-$resultString .= testTimeAndRiskMPL_Basic(7, 1, 'days', 3.85, '0.10', '0.10', 3.85, 3.85, 3.85, '0.10', '0.10', 10, getcwd()."\\verificationFiles\\testTimeAndRiskMPL_compare_2.txt", "testTimeAndRiskMPL_2.txt") . '<br>';
-$resultString .= testTimeAndRiskMPL_Basic(15, 16, 'days', 3.85, '0.10', '0.10', 3.85, 3.85, 3.85, '0.10', '0.10', 10, getcwd()."\\verificationFiles\\testTimeAndRiskMPL_compare_3.txt", "testTimeAndRiskMPL_3.txt") . '<br>';
+$resultString .= testTimeAndRiskMPL_Basic(10, 30, 'days', 3.85, '0.10', '0.10', 3.85, 3.85, 3.85, '0.10', '0.10', 10, getcwd().DS."verificationFiles".DS."testTimeAndRiskMPL_compare_1.txt", "testTimeAndRiskMPL_1.txt") . '<br>';
+$resultString .= testTimeAndRiskMPL_Basic(7, 1, 'days', 3.85, '0.10', '0.10', 3.85, 3.85, 3.85, '0.10', '0.10', 10, getcwd().DS."verificationFiles".DS."testTimeAndRiskMPL_compare_2.txt", "testTimeAndRiskMPL_2.txt") . '<br>';
+$resultString .= testTimeAndRiskMPL_Basic(15, 16, 'days', 3.85, '0.10', '0.10', 3.85, 3.85, 3.85, '0.10', '0.10', 10, getcwd().DS."verificationFiles".DS."testTimeAndRiskMPL_compare_3.txt", "testTimeAndRiskMPL_3.txt") . '<br>';
     
 
 
 //Ambiguity MPL Test(s)
 
-$resultString .= testAmbiguityMPL_Basic(20, 2, 0, 0, 10, 10, 0, 0, 10, getcwd()."\\verificationFiles\\testAmbiguityMPL_compare_1.txt", "testAmbiguityMPL_1.txt") . '<br>';
-$resultString .= testAmbiguityMPL_Basic(500, -500, -50, -50, 100, 0, 50, -50, 10, getcwd()."\\verificationFiles\\testAmbiguityMPL_compare_2.txt", "testAmbiguityMPL_2.txt") . '<br>';
-$resultString .= testAmbiguityMPL_Basic(-500, 500, -50, -50, -1000, 3000, 50, -50, 10, getcwd()."\\verificationFiles\\testAmbiguityMPL_compare_3.txt", "testAmbiguityMPL_3.txt") . '<br>';
+$resultString .= testAmbiguityMPL_Basic(20, 2, 0, 0, 10, 10, 0, 0, 10, getcwd().DS."verificationFiles".DS."testAmbiguityMPL_compare_1.txt", "testAmbiguityMPL_1.txt") . '<br>';
+$resultString .= testAmbiguityMPL_Basic(500, -500, -50, -50, 100, 0, 50, -50, 10, getcwd().DS."verificationFiles".DS."testAmbiguityMPL_compare_2.txt", "testAmbiguityMPL_2.txt") . '<br>';
+$resultString .= testAmbiguityMPL_Basic(-500, 500, -50, -50, -1000, 3000, 50, -50, 10, getcwd().DS."verificationFiles".DS."testAmbiguityMPL_compare_3.txt", "testAmbiguityMPL_3.txt") . '<br>';
+
 
 
 
 echo $resultString;
-    
+
     
 ?>
     

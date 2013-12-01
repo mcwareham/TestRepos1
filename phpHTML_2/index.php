@@ -46,6 +46,18 @@ function printClearFloat(){
     ';
 }
 
+function printTestButton(){
+    echo'<div class="testB">
+            <h3>Run Tests</h3>
+            <form action="testSet.php" method="GET">
+                <div id="submit">
+                    <input type="submit">
+                </div>
+            </form>
+        </div>
+';
+}
+
 function printHeadHTML() {//contains files added: css, js, etc
     echo '
     <!DOCTYPE html>
@@ -62,7 +74,10 @@ function printHeadHTML() {//contains files added: css, js, etc
     <link href="styles.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-    <div id="wrapper">
+    
+    <div id="wrapper">';
+    printTestButton();
+    echo'
         <div id="tabContainer">
           <div class="tabs">
             <ul>
@@ -1073,6 +1088,5 @@ printRiskTab();
 printTimeAndRiskTab();
 printAmbiguityTab();
 printTailHTML();
-
 
 ?>

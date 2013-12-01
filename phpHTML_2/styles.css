@@ -235,3 +235,6 @@ overflow: auto;
 #exampleAmbiguity{
     padding-top:60px;
 }
+.testB{
+    float:right;
+}
