@@ -72,7 +72,7 @@ function printHeadHTML() {//contains files added: css, js, etc
     <meta charset="utf-8">
     <script src="http://code.jquery.com/jquery-1.7.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-    <script src="acidTabs.js"></script> 
+    <script src="templateTabs.js"></script> 
     <script src="buildTabs.js"></script>
     <script src="formValidation.js"></script>
 

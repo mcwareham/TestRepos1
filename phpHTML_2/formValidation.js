@@ -101,7 +101,7 @@ $(document).ready(function(){
         }
     });
 
-     $('#risk').validate({ // check time variables
+     $('#risk').validate({ // check risk variables
         rules: {
             a1Initial: {
                 required: true,
@@ -188,7 +188,7 @@ $(document).ready(function(){
         }
      });
     
-    $('#riskAndTime').validate({ // check time variables
+    $('#riskAndTime').validate({ // check risk and time variables
     rules: {
             a1Initial: {
                 required: true,
@@ -244,7 +244,7 @@ $(document).ready(function(){
     }
     
     });
-    $('#Ambiguity').validate({ // check time variables
+    $('#Ambiguity').validate({ // check ambiguity variables
         rules: {
             a1Initial: {
                 required: true,

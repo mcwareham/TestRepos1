@@ -1,5 +1,7 @@
+    //This tab template is taken from http://www.my-html-codes.com/jquery-tabs-my-first-plugin
+    
     (function($){  
-        $.fn.acidTabs = function(options) { 	
+        $.fn.templateTabs = function(options) { 	
 				var settings = {
       						'style' : 'two'
    				 };     

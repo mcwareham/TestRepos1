@@ -1,6 +1,6 @@
 history.navigationMode = 'compatible';
 $(document).ready(function(){
-   $('#tabContainer').acidTabs();
+   $('#tabContainer').templateTabs();
    
    
    

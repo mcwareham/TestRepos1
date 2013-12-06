@@ -1,8 +1,6 @@
-/** {
-  zoom: 102%;
-}*/
 
 
+/*template for the tabs are taken from http://www.my-html-codes.com/jquery-tabs-my-first-plugin*/
 
 * {
 	margin:0;
@@ -113,6 +111,9 @@ h2{
 	margin:0;
 	color:#FFF;
 }
+
+/*end of tabs*/
+
 .amountsA1{
 float: left;
 padding-right:20px;
